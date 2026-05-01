@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Muhaajir Delta — Smart Text Diff Checker</title>
+  <title>Muhaajir Delta — Smart Text Diff Checker</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="https://i.postimg.cc/JztFxsRH/hajir-logo-putih.webp" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <!-- jsDiff library -->
   <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js"></script>
@@ -11,9 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
-    /* ============================================================
-       CSS VARIABLES & RESET
-       ============================================================ */
+    /* ============================================================ CSS VARIABLES & RESET============================================================ */
     :root {
       --navy: #020617;
       --navy-1: #0a1628;
@@ -74,9 +74,7 @@
       background-size: auto, 40px 40px, 40px 40px;
     }
 
-    /* ============================================================
-       SCROLLBAR
-       ============================================================ */
+    /* ============================================================SCROLLBAR============================================================ */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -92,9 +90,7 @@
       background: var(--slate);
     }
 
-    /* ============================================================
-       HEADER
-       ============================================================ */
+    /* ============================================================HEADER============================================================ */
     header {
       display: flex;
       align-items: center;
@@ -186,7 +182,7 @@
     }
 
     .footer {
-      background: var(--midnight);
+      background: var(--navy-1);
       color: rgba(255, 255, 255, 0.7);
       padding: 40px 20px 30px;
       text-align: center;
@@ -198,10 +194,10 @@
     }
 
 /* ═══════════════════════════
-   FOOTER (dari footer-essentials)
+   FOOTER (from footer-essentials)
 ═══════════════════════════ */
 .footer {
-  background: var(--midnight);
+  background: var(--navy-1);
   color: rgba(255,255,255,0.7);
   padding: 40px 20px 30px;
   text-align: center;
@@ -344,7 +340,7 @@
 
 .license-tag {
   background: var(--blue);
-  color: var(--midnight);
+  color: var(--navy-1);
   padding: 2px 6px;
   border-radius: 20px;
   font-size: 0.6rem;
@@ -412,7 +408,7 @@
 
     .license-tag {
       background: var(--blue);
-      color: var(--midnight);
+      color: var(--navy-1);
       padding: 2px 6px;
       border-radius: 20px;
       font-size: 0.6rem;
@@ -438,9 +434,7 @@
       z-index: 1;
     }
 
-    /* ============================================================
-       MAIN LAYOUT
-       ============================================================ */
+    /* ============================================================MAIN LAYOUT============================================================ */
     .app-wrapper {
       max-width: 1600px;
       margin: 0 auto;
@@ -450,9 +444,7 @@
       gap: 16px;
     }
 
-    /* ============================================================
-       TOOLBAR
-       ============================================================ */
+    /* ============================================================TOOLBAR============================================================ */
     .toolbar {
       display: flex;
       align-items: center;
@@ -622,9 +614,7 @@
       transform: rotate(45deg);
     }
 
-    /* ============================================================
-       INPUT PANES
-       ============================================================ */
+    /* ============================================================INPUT PANES============================================================ */
     .input-area {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -736,9 +726,7 @@
       font-style: italic;
     }
 
-    /* ============================================================
-       DIFF OUTPUT AREA
-       ============================================================ */
+    /* ============================================================DIFF OUTPUT AREA============================================================ */
     .diff-section {
       background: var(--navy-1);
       border: 1px solid rgba(148, 163, 184, 0.1);
@@ -826,9 +814,7 @@
       line-height: 1.5;
     }
 
-    /* ============================================================
-       UNIFIED VIEW
-       ============================================================ */
+    /* ============================================================UNIFIED VIEW============================================================ */
     .unified-table {
       width: 100%;
       border-collapse: collapse;
@@ -935,9 +921,7 @@
       padding: 0 1px;
     }
 
-    /* ============================================================
-       SPLIT VIEW
-       ============================================================ */
+    /* ============================================================SPLIT VIEW============================================================ */
     .split-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -999,9 +983,7 @@
       user-select: none;
     }
 
-    /* ============================================================
-       COPY TOAST
-       ============================================================ */
+    /* ============================================================COPY TOAST============================================================ */
     .toast {
       position: fixed;
       bottom: 28px;
@@ -1029,9 +1011,7 @@
       pointer-events: none;
     }
 
-    /* ============================================================
-       LOADING INDICATOR
-       ============================================================ */
+    /* ============================================================LOADING INDICATOR============================================================ */
     .loading-bar {
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--blue), transparent);
@@ -1050,9 +1030,7 @@
       }
     }
 
-    /* ============================================================
-       EMPTY STATE ANIMATION
-       ============================================================ */
+    /* ============================================================EMPTY STATE ANIMATION============================================================ */
     @keyframes pulse-ring {
       0%,
       100% {
@@ -1069,9 +1047,7 @@
       animation: pulse-ring 3s ease-in-out infinite;
     }
 
-    /* ============================================================
-       RESPONSIVE
-       ============================================================ */
+    /* ============================================================RESPONSIVE============================================================ */
     @media (max-width: 900px) {
       .split-wrapper {
         grid-template-columns: 1fr;
@@ -1101,9 +1077,7 @@
       }
     }
 
-    /* ============================================================
-       HIGHLIGHT HOVER ON ROWS
-       ============================================================ */
+    /* ============================================================HIGHLIGHT HOVER ON ROWS============================================================ */
     .unified-table tr:hover .line-content {
       filter: brightness(1.08);
     }
@@ -1111,9 +1085,7 @@
       filter: brightness(1.06);
     }
 
-    /* ============================================================
-       SCROLLBAR SYNC INDICATOR
-       ============================================================ */
+    /* ============================================================SCROLLBAR SYNC INDICATOR============================================================ */
     .sync-badge {
       font-size: 9px;
       font-weight: 600;
@@ -1130,12 +1102,10 @@
 </head>
 
 <body>
-  <!-- ============================================================
-       HEADER
-       ============================================================ -->
+  <!-- ============================================================HEADER============================================================ -->
   <header>
     <div class="header-left">
-      <img class="logo-img" src="https://i.postimg.cc/Kvg50f5n/IMG-20250812-164118-putih.png" alt="Smart Diff Logo" onerror="this.style.display='none'" />
+      <img class="logo-img" src="https://i.postimg.cc/JztFxsRH/hajir-logo-putih.webp" alt="Smart Diff Logo" onerror="this.style.display='none'" />
       <span class="brand-name">Smart<span>Diff</span></span>|<span>Muhaajir Delta<span></span>
     </div>
 
@@ -1156,9 +1126,7 @@
     </div>
   </header>
 
-  <!-- ============================================================
-       MAIN APP
-       ============================================================ -->
+  <!-- ============================================================MAIN APP============================================================ -->
   <div class="app-wrapper">
     <!-- TOOLBAR -->
     <div class="toolbar">
@@ -1325,14 +1293,14 @@
     </div>
 <!-- FOOTER dari footer-essentials -->
 <footer class="footer">
-  <img src="https://i.postimg.cc/Kvg50f5n/IMG-20250812-164118-putih.png" alt="Logo Muhaajir" class="footer-logo" loading="lazy" decoding="async">
+  <img src="https://i.postimg.cc/JztFxsRH/hajir-logo-putih.webp" alt="Logo hajir" class="footer-logo" loading="lazy" decoding="async">
   <div class="footer-name">Muhaajir Delta</div>
   <div class="footer-tagline">Muhaajir:Where change becomes clear</div>
 
   <div class="ft-div"></div>
   <div class="ft-lnks">
-    <a href="https://hajirmuhaajir.github.io/footer-essentials" target="_blank" rel="noopener noreferrer">Kebijakan Privasi</a>
-    <a href="https://hajirmuhaajir.github.io/footer-essentials" target="_blank" rel="noopener noreferrer">Syarat & Ketentuan</a>
+    <a href="https://hajirmuhaajir.github.io/footer-essentials" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="https://hajirmuhaajir.github.io/footer-essentials" target="_blank" rel="noopener noreferrer">terms & conditions</a>
 </div> <div class="social-links">
     <a href="https://www.youtube.com/@hajirstein" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
     <a href="https://www.tiktok.com/@muhaajir_muhaajir" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
@@ -1737,9 +1705,6 @@
         t += '</table>';
         return t;
       };
-
-      const colorLeft = side => `color:#f87171;`;
-      const colorRight = side => `color:var(--add-color);`;
 
       const html = `
         <div class="split-wrapper">
