@@ -1,19 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muhaajir Delta — Smart Text Diff Checker</title>
+  <title>Raia Delta — Smart Text Diff Checker</title>
+  
+    <!-- SEO Meta Tags -->
+  <meta name="description" content="Raia Delta is a lightweight, privacy-first text comparison tool featuring smart line & word diffing, split/unified views, and instant export. 100% client-side." />
+  <meta name="keywords" content="diff checker, text comparison tool, smart diff, code diff, file comparison, privacy-first tools, raia delta, haiere" />
+  <meta name="author" content="Haiere" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://haiere.github.io/raia-footer/" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://haiere.github.io/raia-footer/" />
+  <meta property="og:title" content="Raia Delta — Smart & Privacy-First Text Diff Checker" />
+  <meta property="og:description" content="Compare text and code seamlessly. Supports line/word diff, split/unified view, and secure local exports without server tracking." />
+  <meta property="og:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Raia Delta — Smart & Privacy-First Text Diff Checker" />
+  <meta name="twitter:description" content="Compare text and code seamlessly with smart line/word diffing and split/unified views. 100% client-side." />
+  <meta name="twitter:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
+  
   <!-- Favicon -->
-  <link rel="icon" type="image/webp" href="https://i.postimg.cc/JztFxsRH/hajir-logo-putih.webp" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <!-- jsDiff library -->
-  <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js"></script>
-  <!-- Google Fonts: JetBrains Mono (code feel) + DM Sans (clean UI) -->
+  <link rel="icon" type="image/webp" href="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
+  
+  <!-- Assets & Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js" defer></script>
+  
+  <!-- Vendor Prefetch & Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+  
   <style>
-    /* ============================================================ CSS VARIABLES & RESET============================================================ */
+    /* ============================================================ CSS VARIABLES & RESET ============================================================ */
     :root {
       --navy: #020617;
       --navy-1: #0a1628;
@@ -29,22 +55,17 @@
       --blue-glow-sm: rgba(59, 130, 246, 0.08);
       --white: #f1f5f9;
       --white-dim: #e2e8f8;
-      /* diff colors */
       --del-bg: rgba(255, 238, 240, 0.12);
-      --del-bg-full: #ffeef0;
       --del-color: #f87171;
-      --del-gutter: rgba(239, 68, 68, 0.25);
-      --add-bg: rgba(230, 255, 237, 0.10);
-      --add-bg-full: #e6ffed;
       --add-color: #4ade80;
-      --add-gutter: rgba(74, 222, 128, 0.25);
       --radius: 10px;
       --radius-sm: 6px;
       --mono: 'JetBrains Mono', monospace;
       --sans: 'DM Sans', sans-serif;
-      --transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
-      --shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
-      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
+      --transition: 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
+      --glow-blue: 0 0 40px rgba(59, 130, 246, 0.08);
     }
 
     *,
@@ -67,14 +88,14 @@
       font-size: 14px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      /* subtle grid pattern */
-      background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
-        linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
-      background-size: auto, 40px 40px, 40px 40px;
+      background-image: 
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 30% at 80% 100%, rgba(59, 130, 246, 0.04) 0%, transparent 50%),
+        linear-gradient(rgba(148, 163, 184, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.02) 1px, transparent 1px);
+      background-size: auto, auto, 40px 40px, 40px 40px;
     }
 
-    /* ============================================================SCROLLBAR============================================================ */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -85,50 +106,63 @@
     ::-webkit-scrollbar-thumb {
       background: var(--slate-dim);
       border-radius: 3px;
+      transition: background var(--transition);
     }
     ::-webkit-scrollbar-thumb:hover {
       background: var(--slate);
     }
 
-    /* ============================================================HEADER============================================================ */
+    /* ============================================================ HEADER ============================================================ */
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 28px;
-      height: 62px;
-      background: rgba(10, 22, 40, 0.92);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-      backdrop-filter: blur(12px);
+      height: 64px;
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
       position: sticky;
       top: 0;
       z-index: 100;
+      transition: background var(--transition);
     }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .logo-img {
-      height: 42px;
+      height: 40px;
       width: auto;
       object-fit: contain;
-      /* ensure logo pops on dark bg */
-      filter: brightness(1.05) drop-shadow(0 0 8px rgba(59, 130, 246, 0.35));
+      filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.25));
+      transition: transform var(--transition);
+    }
+    .logo-img:hover {
+      transform: scale(1.05);
     }
 
     .brand-name {
       font-family: var(--mono);
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
       letter-spacing: -0.5px;
       color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
-
     .brand-name span {
       color: var(--blue);
+    }
+    .brand-name .pipe {
+      color: var(--slate-dim);
+      font-weight: 300;
+      margin: 0 2px;
     }
 
     .header-center {
@@ -144,9 +178,14 @@
       text-transform: uppercase;
       color: var(--blue);
       background: var(--blue-glow);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      border: 1px solid rgba(59, 130, 246, 0.25);
       border-radius: 20px;
-      padding: 2px 10px;
+      padding: 2px 12px;
+      transition: all var(--transition);
+    }
+    .badge:hover {
+      border-color: var(--blue);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
     }
 
     .header-right {
@@ -160,227 +199,183 @@
       font-family: var(--mono);
       color: var(--slate);
       background: var(--navy-3);
-      border: 1px solid rgba(148, 163, 184, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.1);
       border-radius: 20px;
-      padding: 3px 12px;
+      padding: 3px 14px;
       display: flex;
       align-items: center;
       gap: 6px;
+      transition: all var(--transition);
+    }
+    .stat-pill:hover {
+      border-color: rgba(148, 163, 184, 0.2);
+      background: var(--navy-4);
     }
 
     .stat-pill .dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--slate-dim);
+      transition: all var(--transition);
     }
     .stat-pill .dot.del {
       background: var(--del-color);
+      box-shadow: 0 0 8px rgba(248, 113, 113, 0.3);
     }
     .stat-pill .dot.add {
       background: var(--add-color);
+      box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
     }
 
+    /* ============================================================ FOOTER ============================================================ */
     .footer {
       background: var(--navy-1);
       color: rgba(255, 255, 255, 0.7);
-      padding: 40px 20px 30px;
+      padding: 50px 20px 30px;
       text-align: center;
-      border-top: 1px solid rgba(59, 130, 246, 0.2);
+      border-top: 1px solid rgba(59, 130, 246, 0.15);
       position: relative;
       overflow: hidden;
       width: 100%;
       margin-top: 2rem;
     }
 
-/* ═══════════════════════════
-   FOOTER (from footer-essentials)
-═══════════════════════════ */
-.footer {
-  background: var(--navy-1);
-  color: rgba(255,255,255,0.7);
-  padding: 40px 20px 30px;
-  text-align: center;
-  border-top: 1px solid rgba(59,130,246,0.2);
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  margin-top: 2rem;
-}
-
-.footer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(59,130,246,0.05) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.footer-logo {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: contain;
-  border: 1.5px solid rgba(59,130,246,0.4);
-  padding: 6px;
-  background: rgba(255,255,255,0.05);
-  margin-bottom: 16px;
-  position: relative;
-  z-index: 1;
-}
-
-.footer-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.3rem;
-  color: #fff;
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 1;
-  font-weight: 700;
-}
-
-.footer-tagline {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 28px;
-  letter-spacing: 0.3px;
-  position: relative;
-  z-index: 1;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
-}
-
-.footer-link {
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  font-size: 0.85rem;
-  padding: 6px 14px;
-  border-radius: 40px;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: all var(--transition, 0.3s);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 500;
-}
-
-.footer-link:hover {
-  background: rgba(59,130,246,0.15);
-  border-color: rgba(59,130,246,0.4);
-  color: var(--blue);
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
-}
-
-.social-link {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  transition: all 0.3s;
-}
-
-.social-link:hover {
-  background: rgba(255,255,255,0.08);
-  border-color: var(--blue);
-  color: var(--blue);
-  transform: translateY(-3px);
-}
-
-.github-links {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
-}
-
-.github-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: rgba(255,255,255,0.65);
-  text-decoration: none;
-  font-size: 0.8rem;
-  padding: 6px 14px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 40px;
-  transition: all 0.3s;
-}
-
-.github-link:hover {
-  border-color: rgba(59,130,246,0.4);
-  color: var(--blue);
-  background: rgba(59,130,246,0.07);
-}
-
-.license-tag {
-  background: var(--blue);
-  color: var(--navy-1);
-  padding: 2px 6px;
-  border-radius: 20px;
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-
-.footer-divider {
-  width: 60px;
-  height: 1px;
-  background: rgba(59,130,246,0.3);
-  margin: 0 auto 20px;
-  position: relative;
-  z-index: 1;
-}
-
-.copyright {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.35);
-  letter-spacing: 0.5px;
-  position: relative;
-  z-index: 1;
-}
-
-    /* Biar icon social media agak gedean dikit */
-    .social-link i {
-      font-size: 1.2rem;
-      transition: transform 0.3s ease;
+    .footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
+      pointer-events: none;
     }
 
-    .social-link i:hover {
-      transform: scale(1.2);
-      /* Efek zoom pas di-hover */
+    .footer-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: contain;
+      border: 2px solid rgba(59, 130, 246, 0.3);
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      transition: all var(--transition);
+    }
+    .footer-logo:hover {
+      transform: scale(1.05) rotate(-4deg);
+      border-color: rgba(59, 130, 246, 0.6);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+    }
+
+    .footer-name {
+      font-family: var(--mono);
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .footer-name span {
+      color: var(--blue);
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+    }
+
+    .footer-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+      border-radius: 2px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-link {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 6px 18px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+    .footer-link:hover {
+      background: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.35);
+      color: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.1);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all var(--transition);
+    }
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.12);
+    }
+
+    .social-link i {
+      font-size: 1.2rem;
+      transition: transform var(--transition);
+    }
+    .social-link:hover i {
+      transform: scale(1.15);
     }
 
     .github-links {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 28px;
       flex-wrap: wrap;
       position: relative;
@@ -394,22 +389,22 @@
       color: rgba(255, 255, 255, 0.65);
       text-decoration: none;
       font-size: 0.8rem;
-      padding: 6px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 40px;
-      transition: all 0.3s;
+      transition: all var(--transition);
     }
-
     .github-link:hover {
-      border-color: rgba(59, 130, 246, 0.4);
+      border-color: rgba(59, 130, 246, 0.35);
       color: var(--blue);
-      background: rgba(59, 130, 246, 0.07);
+      background: rgba(59, 130, 246, 0.06);
+      transform: translateY(-2px);
     }
 
     .license-tag {
       background: var(--blue);
       color: var(--navy-1);
-      padding: 2px 6px;
+      padding: 2px 8px;
       border-radius: 20px;
       font-size: 0.6rem;
       font-weight: 800;
@@ -417,57 +412,55 @@
       white-space: nowrap;
     }
 
-    .footer-divider {
-      width: 60px;
-      height: 1px;
-      background: rgba(59, 130, 246, 0.3);
-      margin: 0 auto 20px;
-      position: relative;
-      z-index: 1;
-    }
-
     .copyright {
       font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.35);
+      color: rgba(255, 255, 255, 0.3);
       letter-spacing: 0.5px;
       position: relative;
       z-index: 1;
     }
 
-    /* ============================================================MAIN LAYOUT============================================================ */
+    /* ============================================================ MAIN LAYOUT ============================================================ */
     .app-wrapper {
       max-width: 1600px;
       margin: 0 auto;
-      padding: 20px 20px 40px;
+      padding: 20px 24px 40px;
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
-    /* ============================================================TOOLBAR============================================================ */
+    /* ============================================================ TOOLBAR ============================================================ */
     .toolbar {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
-      background: var(--navy-1);
-      border: 1px solid rgba(148, 163, 184, 0.1);
+      gap: 8px 12px;
+      background: rgba(10, 22, 40, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(148, 163, 184, 0.08);
       border-radius: var(--radius);
-      padding: 12px 16px;
-      box-shadow: var(--shadow-sm);
+      padding: 10px 18px;
+      box-shadow: var(--shadow-sm), var(--glow-blue);
+      transition: all var(--transition);
+    }
+    .toolbar:hover {
+      border-color: rgba(148, 163, 184, 0.12);
     }
 
     .toolbar-section {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      flex-wrap: wrap;
     }
 
     .toolbar-divider {
       width: 1px;
-      height: 28px;
-      background: rgba(148, 163, 184, 0.15);
-      margin: 0 4px;
+      height: 30px;
+      background: rgba(148, 163, 184, 0.12);
+      margin: 0 2px;
     }
 
     /* BUTTONS */
@@ -485,45 +478,48 @@
       transition: all var(--transition);
       white-space: nowrap;
       outline: none;
+      position: relative;
     }
 
     .btn:focus-visible {
-      box-shadow: 0 0 0 2px var(--blue);
+      box-shadow: 0 0 0 2px var(--blue), 0 0 0 4px rgba(59, 130, 246, 0.2);
     }
 
     .btn-primary {
       background: var(--blue);
       color: #fff;
-      box-shadow: 0 2px 12px rgba(59, 130, 246, 0.4);
+      box-shadow: 0 2px 16px rgba(59, 130, 246, 0.35);
     }
     .btn-primary:hover {
       background: #5b9af8;
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.55);
-      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 4px 28px rgba(59, 130, 246, 0.5);
+      transform: translateY(-2px) scale(1.02);
     }
     .btn-primary:active {
-      transform: scale(0.98);
+      transform: scale(0.97) translateY(0);
     }
 
     .btn-ghost {
-      background: var(--navy-3);
+      background: rgba(22, 32, 51, 0.7);
       color: var(--slate-bright);
-      border: 1px solid rgba(148, 163, 184, 0.15);
+      border: 1px solid rgba(148, 163, 184, 0.12);
     }
     .btn-ghost:hover {
       background: var(--navy-4);
       color: var(--white);
-      border-color: rgba(148, 163, 184, 0.3);
+      border-color: rgba(148, 163, 184, 0.25);
+      transform: translateY(-1px);
     }
 
     .btn-danger {
       background: transparent;
       color: #f87171;
-      border: 1px solid rgba(248, 113, 113, 0.25);
+      border: 1px solid rgba(248, 113, 113, 0.2);
     }
     .btn-danger:hover {
       background: rgba(248, 113, 113, 0.08);
-      border-color: rgba(248, 113, 113, 0.45);
+      border-color: rgba(248, 113, 113, 0.4);
+      transform: translateY(-1px);
     }
 
     .btn-sm {
@@ -533,20 +529,24 @@
 
     .btn svg {
       flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+    .btn:hover svg {
+      transform: scale(1.1);
     }
 
-    /* TOGGLE GROUP (split/unified, line/word) */
+    /* TOGGLE GROUP */
     .toggle-group {
       display: flex;
-      background: var(--navy-3);
-      border: 1px solid rgba(148, 163, 184, 0.12);
+      background: rgba(22, 32, 51, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.08);
       border-radius: var(--radius-sm);
       padding: 2px;
       gap: 2px;
     }
 
     .toggle-option {
-      padding: 5px 12px;
+      padding: 5px 14px;
       font-size: 12px;
       font-weight: 500;
       color: var(--slate);
@@ -557,15 +557,13 @@
       transition: all var(--transition);
       font-family: var(--sans);
     }
-
     .toggle-option.active {
       background: var(--blue);
       color: #fff;
-      box-shadow: 0 1px 6px rgba(59, 130, 246, 0.4);
+      box-shadow: 0 2px 12px rgba(59, 130, 246, 0.35);
     }
-
     .toggle-option:not(.active):hover {
-      background: var(--navy-4);
+      background: rgba(255, 255, 255, 0.05);
       color: var(--white);
     }
 
@@ -580,6 +578,8 @@
       cursor: pointer;
       user-select: none;
       transition: color var(--transition);
+      padding: 2px 4px;
+      border-radius: 4px;
     }
     .checkbox-label:hover {
       color: var(--white);
@@ -587,10 +587,10 @@
 
     .checkbox-label input[type="checkbox"] {
       appearance: none;
-      width: 15px;
-      height: 15px;
+      width: 16px;
+      height: 16px;
       border: 1.5px solid var(--slate-dim);
-      border-radius: 3px;
+      border-radius: 4px;
       background: var(--navy-3);
       cursor: pointer;
       transition: all var(--transition);
@@ -600,21 +600,22 @@
     .checkbox-label input[type="checkbox"]:checked {
       background: var(--blue);
       border-color: var(--blue);
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
     }
     .checkbox-label input[type="checkbox"]:checked::after {
       content: '';
       position: absolute;
-      left: 3px;
-      top: 1px;
-      width: 5px;
-      height: 9px;
+      left: 3.5px;
+      top: 0.5px;
+      width: 6px;
+      height: 10px;
       border: 2px solid #fff;
       border-top: none;
       border-left: none;
       transform: rotate(45deg);
     }
 
-    /* ============================================================INPUT PANES============================================================ */
+    /* ============================================================ INPUT PANES ============================================================ */
     .input-area {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -628,39 +629,46 @@
     }
 
     .pane {
-      background: var(--navy-1);
-      border: 1px solid rgba(148, 163, 184, 0.1);
+      background: rgba(10, 22, 40, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(148, 163, 184, 0.08);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
       display: flex;
       flex-direction: column;
-      transition: border-color var(--transition);
     }
-
+    .pane:hover {
+      border-color: rgba(148, 163, 184, 0.15);
+    }
     .pane:focus-within {
-      border-color: rgba(59, 130, 246, 0.4);
-      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.15), var(--shadow-sm);
+      border-color: rgba(59, 130, 246, 0.35);
+      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.08), var(--shadow-sm), var(--glow-blue);
     }
 
     .pane-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 14px;
-      background: var(--navy-2);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+      padding: 10px 16px;
+      background: rgba(15, 30, 53, 0.6);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.06);
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .pane-label {
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--slate);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-
     .pane-label.original {
       color: #f87171;
     }
@@ -678,9 +686,11 @@
       font-size: 10px;
       font-family: var(--mono);
       color: var(--slate-dim);
+      padding: 2px 8px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
     }
 
-    /* file upload hidden */
     input[type="file"] {
       display: none;
     }
@@ -689,11 +699,11 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 3px 9px;
+      padding: 3px 10px;
       font-size: 11px;
       font-weight: 500;
       color: var(--slate);
-      background: var(--navy-3);
+      background: rgba(22, 32, 51, 0.6);
       border: 1px dashed rgba(148, 163, 184, 0.2);
       border-radius: var(--radius-sm);
       cursor: pointer;
@@ -704,6 +714,7 @@
       color: var(--blue);
       border-color: rgba(59, 130, 246, 0.4);
       background: var(--blue-glow-sm);
+      transform: translateY(-1px);
     }
 
     textarea {
@@ -715,33 +726,42 @@
       color: var(--white-dim);
       font-family: var(--mono);
       font-size: 13px;
-      line-height: 1.7;
-      padding: 14px;
+      line-height: 1.8;
+      padding: 14px 16px;
       min-height: 200px;
       caret-color: var(--blue);
+      transition: all var(--transition);
     }
-
+    textarea:focus {
+      color: var(--white);
+    }
     textarea::placeholder {
-      color: rgba(148, 163, 184, 0.3);
+      color: rgba(148, 163, 184, 0.25);
       font-style: italic;
     }
 
-    /* ============================================================DIFF OUTPUT AREA============================================================ */
+    /* ============================================================ DIFF OUTPUT ============================================================ */
     .diff-section {
-      background: var(--navy-1);
-      border: 1px solid rgba(148, 163, 184, 0.1);
+      background: rgba(10, 22, 40, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(148, 163, 184, 0.08);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+    }
+    .diff-section:hover {
+      border-color: rgba(148, 163, 184, 0.12);
     }
 
     .diff-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 16px;
-      background: var(--navy-2);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+      padding: 10px 18px;
+      background: rgba(15, 30, 53, 0.5);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.06);
       gap: 10px;
       flex-wrap: wrap;
     }
@@ -756,7 +776,6 @@
       align-items: center;
       gap: 8px;
     }
-
     .diff-title svg {
       color: var(--blue);
     }
@@ -764,11 +783,10 @@
     .diff-stats {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-size: 11px;
       font-family: var(--mono);
     }
-
     .stat-del {
       color: var(--del-color);
     }
@@ -790,6 +808,7 @@
       min-height: 400px;
       overflow: auto;
       position: relative;
+      transition: all var(--transition);
     }
 
     /* PLACEHOLDER STATE */
@@ -799,34 +818,36 @@
       align-items: center;
       justify-content: center;
       min-height: 400px;
-      gap: 14px;
+      gap: 16px;
       color: var(--slate-dim);
       font-size: 13px;
+      padding: 20px;
+      text-align: center;
     }
-
     .diff-placeholder svg {
       opacity: 0.3;
       color: var(--blue);
+      transition: all var(--transition);
+    }
+    .diff-placeholder:hover svg {
+      opacity: 0.5;
+      transform: scale(1.05);
+    }
+    .diff-placeholder p strong {
+      color: var(--blue);
     }
 
-    .diff-placeholder p {
-      text-align: center;
-      line-height: 1.5;
-    }
-
-    /* ============================================================UNIFIED VIEW============================================================ */
+    /* ============================================================ UNIFIED VIEW ============================================================ */
     .unified-table {
       width: 100%;
       border-collapse: collapse;
       font-family: var(--mono);
       font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
-
     .unified-table tr {
       transition: background var(--transition);
     }
-
     .unified-table td {
       padding: 0;
       white-space: pre-wrap;
@@ -836,16 +857,16 @@
     .line-num {
       color: var(--slate-dim);
       text-align: right;
-      padding: 2px 10px 2px 12px;
+      padding: 1px 10px 1px 14px;
       user-select: none;
       min-width: 48px;
-      border-right: 1px solid rgba(148, 163, 184, 0.08);
+      border-right: 1px solid rgba(148, 163, 184, 0.06);
       font-size: 11px;
       vertical-align: top;
     }
 
     .sign-col {
-      padding: 2px 10px;
+      padding: 1px 10px;
       font-weight: 700;
       min-width: 20px;
       user-select: none;
@@ -853,18 +874,17 @@
     }
 
     .line-content {
-      padding: 2px 14px 2px 4px;
+      padding: 1px 14px 1px 4px;
       width: 100%;
       vertical-align: top;
     }
 
-    /* row states */
     .row-del {
-      background: rgba(239, 68, 68, 0.07);
+      background: rgba(239, 68, 68, 0.06);
     }
     .row-del .line-num {
-      background: rgba(239, 68, 68, 0.1);
-      border-right-color: rgba(239, 68, 68, 0.2);
+      background: rgba(239, 68, 68, 0.08);
+      border-right-color: rgba(239, 68, 68, 0.15);
     }
     .row-del .sign-col {
       color: var(--del-color);
@@ -872,16 +892,13 @@
     .row-del .line-content {
       color: #fca5a5;
     }
-    .row-del .gutter {
-      background: rgba(239, 68, 68, 0.3);
-    }
 
     .row-add {
-      background: rgba(74, 222, 128, 0.06);
+      background: rgba(74, 222, 128, 0.05);
     }
     .row-add .line-num {
-      background: rgba(74, 222, 128, 0.08);
-      border-right-color: rgba(74, 222, 128, 0.2);
+      background: rgba(74, 222, 128, 0.06);
+      border-right-color: rgba(74, 222, 128, 0.15);
     }
     .row-add .sign-col {
       color: var(--add-color);
@@ -889,11 +906,7 @@
     .row-add .line-content {
       color: #86efac;
     }
-    .row-add .gutter {
-      background: rgba(74, 222, 128, 0.3);
-    }
 
-    .row-neu .line-num {}
     .row-neu .sign-col {
       color: var(--slate-dim);
     }
@@ -907,43 +920,44 @@
       min-width: 3px;
     }
 
-    /* word-level highlights inside lines */
     .word-del {
-      background: rgba(239, 68, 68, 0.28);
+      background: rgba(239, 68, 68, 0.25);
       color: #fca5a5;
       border-radius: 2px;
-      padding: 0 1px;
+      padding: 0 2px;
     }
     .word-add {
-      background: rgba(74, 222, 128, 0.22);
+      background: rgba(74, 222, 128, 0.2);
       color: #86efac;
       border-radius: 2px;
-      padding: 0 1px;
+      padding: 0 2px;
     }
 
-    /* ============================================================SPLIT VIEW============================================================ */
+    .unified-table tr:hover .line-content {
+      filter: brightness(1.08);
+    }
+
+    /* ============================================================ SPLIT VIEW ============================================================ */
     .split-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
       min-height: 400px;
     }
-
     .split-col {
       overflow: auto;
     }
-
     .split-col:first-child {
-      border-right: 1px solid rgba(148, 163, 184, 0.08);
+      border-right: 1px solid rgba(148, 163, 184, 0.06);
     }
 
     .split-col-header {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
-      background: var(--navy-2);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.06);
+      padding: 6px 16px;
+      background: rgba(15, 30, 53, 0.4);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.05);
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.06em;
@@ -951,8 +965,8 @@
       position: sticky;
       top: 0;
       z-index: 2;
+      backdrop-filter: blur(4px);
     }
-
     .split-col-header.left {
       color: #f87171;
     }
@@ -965,9 +979,8 @@
       border-collapse: collapse;
       font-family: var(--mono);
       font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
-
     .split-table td {
       padding: 0;
       white-space: pre-wrap;
@@ -976,91 +989,170 @@
     }
 
     .empty-row {
-      background: rgba(148, 163, 184, 0.03);
+      background: rgba(148, 163, 184, 0.02);
     }
     .empty-row td {
       color: transparent;
       user-select: none;
     }
 
-    /* ============================================================COPY TOAST============================================================ */
+    .split-table tr:hover .line-content {
+      filter: brightness(1.06);
+    }
+
+    .sync-badge {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-glow);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 10px;
+      padding: 1px 8px;
+      margin-left: auto;
+    }
+
+    /* ============================================================ TOAST ============================================================ */
     .toast {
       position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: #1a2e4a;
-      border: 1px solid rgba(59, 130, 246, 0.4);
+      bottom: 32px;
+      right: 32px;
+      background: rgba(26, 46, 74, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(59, 130, 246, 0.3);
       color: var(--white);
-      padding: 10px 18px;
+      padding: 12px 22px;
       border-radius: var(--radius-sm);
       font-size: 13px;
       font-weight: 500;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
       z-index: 999;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
       opacity: 1;
-      transition: all 0.3s;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
-
     .toast.hidden {
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(16px) scale(0.96);
       pointer-events: none;
     }
 
-    /* ============================================================LOADING INDICATOR============================================================ */
-    .loading-bar {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--blue), transparent);
-      width: 60%;
-      animation: sweep 1.2s ease-in-out infinite;
-      border-radius: 2px;
+    /* ============================================================ COOKIE BANNER ============================================================ */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(59, 130, 246, 0.15);
+      padding: 16px 24px;
+      z-index: 1000;
+      transform: translateY(0);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    #cookie-banner.hidden {
+      transform: translateY(100%);
+    }
+    .cookie-content {
+      max-width: 1200px;
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cookie-text {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--slate-bright);
+    }
+    .cookie-text i {
+      color: var(--blue);
+      font-size: 1.2rem;
+    }
+    .cookie-text a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(59, 130, 246, 0.3);
+    }
+    .cookie-text a:hover {
+      border-bottom-color: var(--blue);
+    }
+    .cookie-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-cookie {
+      padding: 8px 20px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .btn-cookie-accept {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 2px 16px rgba(59, 130, 246, 0.3);
+    }
+    .btn-cookie-accept:hover {
+      background: #5b9af8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 24px rgba(59, 130, 246, 0.4);
+    }
+    .btn-cookie-decline {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--slate);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+    }
+    .btn-cookie-decline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
     }
 
-    @keyframes sweep {
-      0% {
-        transform: translateX(-100%);
+    @media (max-width: 768px) {
+      .cookie-content {
+        flex-direction: column;
+        text-align: center;
       }
-      100% {
-        transform: translateX(250%);
+      .cookie-text {
+        flex-direction: column;
+        gap: 6px;
       }
-    }
-
-    /* ============================================================EMPTY STATE ANIMATION============================================================ */
-    @keyframes pulse-ring {
-      0%,
-      100% {
-        opacity: 0.2;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.5;
-        transform: scale(1.08);
+      .cookie-actions {
+        justify-content: center;
       }
     }
 
-    .pulse-icon {
-      animation: pulse-ring 3s ease-in-out infinite;
-    }
-
-    /* ============================================================RESPONSIVE============================================================ */
+    /* ============================================================ RESPONSIVE ============================================================ */
     @media (max-width: 900px) {
       .split-wrapper {
         grid-template-columns: 1fr;
       }
       .split-col:first-child {
         border-right: none;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.06);
       }
       .toolbar {
-        gap: 8px;
+        gap: 6px 10px;
+        padding: 10px 14px;
       }
       header {
         padding: 0 14px;
+        height: 58px;
       }
       .app-wrapper {
         padding: 12px 12px 30px;
@@ -1073,48 +1165,99 @@
         display: none;
       }
       .brand-name {
-        font-size: 15px;
+        font-size: 16px;
+      }
+      .logo-img {
+        height: 32px;
+      }
+      .toolbar-section .toggle-group,
+      .toolbar-section .checkbox-label {
+        font-size: 11px;
+      }
+      .toggle-option {
+        padding: 4px 10px;
+        font-size: 11px;
+      }
+      .btn {
+        font-size: 12px;
+        padding: 5px 12px;
+      }
+      .diff-header {
+        padding: 8px 12px;
+      }
+      .diff-stats {
+        font-size: 10px;
+        gap: 6px;
       }
     }
 
-    /* ============================================================HIGHLIGHT HOVER ON ROWS============================================================ */
-    .unified-table tr:hover .line-content {
-      filter: brightness(1.08);
-    }
-    .split-table tr:hover .line-content {
-      filter: brightness(1.06);
+    @media (max-width: 400px) {
+      .brand-name {
+        font-size: 14px;
+      }
+      .badge {
+        font-size: 8px;
+        padding: 1px 8px;
+      }
+      .app-wrapper {
+        padding: 8px 8px 20px;
+      }
+      textarea {
+        font-size: 12px;
+        padding: 10px 12px;
+        min-height: 140px;
+      }
     }
 
-    /* ============================================================SCROLLBAR SYNC INDICATOR============================================================ */
-    .sync-badge {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--blue);
-      background: var(--blue-glow);
-      border: 1px solid rgba(59, 130, 246, 0.2);
-      border-radius: 10px;
-      padding: 1px 7px;
-      margin-left: auto;
+    /* ============================================================ ANIMATIONS ============================================================ */
+    @keyframes pulse-ring {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.06); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pulse-icon {
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+
+    .diff-output {
+      animation: fadeInUp 0.3s ease-out;
+    }
+
+    /* ============================================================ LOADING BAR ============================================================ */
+    .loading-bar {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      width: 60%;
+      animation: sweep 1s ease-in-out infinite;
+      border-radius: 2px;
+      margin: 0 auto;
+    }
+    @keyframes sweep {
+      0% { transform: translateX(-120%); }
+      100% { transform: translateX(220%); }
     }
   </style>
 </head>
 
 <body>
-  <!-- ============================================================HEADER============================================================ -->
+  <!-- ============================================================ HEADER ============================================================ -->
   <header>
     <div class="header-left">
-      <img class="logo-img" src="https://i.postimg.cc/JztFxsRH/hajir-logo-putih.webp" alt="Smart Diff Logo" onerror="this.style.display='none'" />
-      <span class="brand-name">Smart<span>Diff</span></span>|<span>Muhaajir Delta<span></span>
+      <img class="logo-img" src="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" alt="Haiere Logo" onerror="this.style.display='none'" />
+      
+      <span class="brand-name">
+        Raia<span>Delta</span><span>
+      </span>
     </div>
 
     <div class="header-center">
-      <span class="badge">v3.0</span>
+      <span class="badge">v1.2.1</span>
     </div>
 
     <div class="header-right">
-      <!-- Live stats updated after compare -->
       <div class="stat-pill" id="stat-del">
         <span class="dot del"></span>
         <span id="stat-del-val">0 removed</span>
@@ -1124,13 +1267,13 @@
         <span id="stat-add-val">0 added</span>
       </div>
     </div>
-  </header>
+</header>
 
-  <!-- ============================================================MAIN APP============================================================ -->
+
+  <!-- ============================================================ MAIN APP ============================================================ -->
   <div class="app-wrapper">
     <!-- TOOLBAR -->
     <div class="toolbar">
-      <!-- Primary actions -->
       <div class="toolbar-section">
         <button class="btn btn-primary" id="btn-compare" onclick="runCompare()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1138,17 +1281,14 @@
           </svg>
           Compare
         </button>
-
         <button class="btn btn-ghost" onclick="clearBoth()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="3 6 5 6 21 6" />
             <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-            <path d="M10 11v6" />
-            <path d="M14 11v6" />
+            <path d="M10 11v6" /><path d="M14 11v6" />
           </svg>
-          Clear Both
+          Clear
         </button>
-
         <button class="btn btn-ghost" onclick="swapTexts()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M7 16V4m0 0L3 8m4-4l4 4" />
@@ -1160,7 +1300,6 @@
 
       <div class="toolbar-divider"></div>
 
-      <!-- Diff granularity -->
       <div class="toolbar-section">
         <span style="font-size:11px;color:var(--slate-dim);font-weight:600;letter-spacing:.05em;text-transform:uppercase;">Mode</span>
         <div class="toggle-group">
@@ -1171,21 +1310,19 @@
 
       <div class="toolbar-divider"></div>
 
-      <!-- Options -->
-      <div class="toolbar-section" style="gap:14px;">
+      <div class="toolbar-section" style="gap:10px;">
         <label class="checkbox-label">
           <input type="checkbox" id="opt-ignore-case" onchange="debouncedCompare()" />
           Ignore Case
         </label>
         <label class="checkbox-label">
           <input type="checkbox" id="opt-ignore-ws" onchange="debouncedCompare()" />
-          Ignore Whitespace
+          Ignore WS
         </label>
       </div>
 
       <div class="toolbar-divider"></div>
 
-      <!-- View mode -->
       <div class="toolbar-section">
         <span style="font-size:11px;color:var(--slate-dim);font-weight:600;letter-spacing:.05em;text-transform:uppercase;">View</span>
         <div class="toggle-group">
@@ -1197,10 +1334,9 @@
 
     <!-- INPUT PANES -->
     <div class="input-area">
-      <!-- Original -->
       <div class="pane">
         <div class="pane-header">
-          <span class="pane-label original">▪ Original Text</span>
+          <span class="pane-label original">▪ Original</span>
           <div class="pane-actions">
             <span class="char-count" id="count-a">0 chars</span>
             <label class="upload-btn" for="upload-a">
@@ -1212,16 +1348,15 @@
               Upload
             </label>
             <input type="file" id="upload-a" accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py" onchange="loadFile(this,'a')" />
-            <button class="btn btn-sm btn-ghost" onclick="clearPane('a')">Clear</button>
+            <button class="btn btn-sm btn-ghost" onclick="clearPane('a')">✕</button>
           </div>
         </div>
         <textarea id="text-a" placeholder="Paste or type original text here…" oninput="updateCount('a'); debouncedCompare()" spellcheck="false"></textarea>
       </div>
 
-      <!-- Changed -->
       <div class="pane">
         <div class="pane-header">
-          <span class="pane-label changed">▪ Changed Text</span>
+          <span class="pane-label changed">▪ Changed</span>
           <div class="pane-actions">
             <span class="char-count" id="count-b">0 chars</span>
             <label class="upload-btn" for="upload-b">
@@ -1233,10 +1368,10 @@
               Upload
             </label>
             <input type="file" id="upload-b" accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py" onchange="loadFile(this,'b')" />
-            <button class="btn btn-sm btn-ghost" onclick="clearPane('b')">Clear</button>
+            <button class="btn btn-sm btn-ghost" onclick="clearPane('b')">✕</button>
           </div>
         </div>
-        <textarea id="text-b" placeholder="Paste or type the changed text here…" oninput="updateCount('b'); debouncedCompare()" spellcheck="false"></textarea>
+        <textarea id="text-b" placeholder="Paste or type changed text here…" oninput="updateCount('b'); debouncedCompare()" spellcheck="false"></textarea>
       </div>
     </div>
 
@@ -1252,11 +1387,11 @@
           Diff Output
         </div>
         <div class="diff-stats" id="diff-stats" style="display:none;">
-          <span class="stat-del" id="ds-removed">— 0 lines</span>
+          <span class="stat-del" id="ds-removed">— 0</span>
           <span style="color:var(--slate-dim);">|</span>
-          <span class="stat-add" id="ds-added">+ 0 lines</span>
+          <span class="stat-add" id="ds-added">+ 0</span>
           <span style="color:var(--slate-dim);">|</span>
-          <span class="stat-neu" id="ds-equal">= 0 lines</span>
+          <span class="stat-neu" id="ds-equal">= 0</span>
         </div>
         <div class="diff-actions">
           <button class="btn btn-sm btn-ghost" onclick="copyDiff()" title="Copy diff as plain text">
@@ -1268,7 +1403,7 @@
           </button>
           <button class="btn btn-sm btn-ghost" onclick="downloadDiff()" title="Download diff">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 0-2-2v-4" />
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
               <polyline points="7 10 12 15 17 10" />
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
@@ -1278,7 +1413,6 @@
       </div>
 
       <div class="diff-output" id="diff-output">
-        <!-- Placeholder -->
         <div class="diff-placeholder" id="diff-placeholder">
           <svg class="pulse-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -1287,38 +1421,84 @@
             <line x1="16" y1="17" x2="8" y2="17" />
             <polyline points="10 9 9 9 8 9" />
           </svg>
-          <p style="color:var(--slate);">Enter text in both panes and press <strong style="color:var(--blue)">Compare</strong><br />or start typing — live preview is enabled.</p>
+          <p>Enter text in both panes and press <strong>Compare</strong><br />or start typing — live preview is enabled.</p>
         </div>
       </div>
     </div>
-<!-- FOOTER dari footer-essentials -->
-<footer class="footer">
-  <img src="https://i.postimg.cc/JztFxsRH/hajir-logo-putih.webp" alt="Logo hajir" class="footer-logo" loading="lazy" decoding="async">
-  <div class="footer-name">Muhaajir Delta</div>
-  <div class="footer-tagline">Muhaajir:Where change becomes clear</div>
+
+    <!-- ============================================================ FOOTER ============================================================ -->
+    <footer class="footer">
+  <img src="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" alt="Haiere Logo" class="footer-logo" loading="lazy" decoding="async" />
+  <div class="footer-name">Raia<span>Delta</span></div>
+  <div class="footer-tagline">Where change becomes clear</div>
 
   <div class="footer-divider"></div>
-  <div class="copyright">© 2026 Muhaajir. All rights reserved.</div>
+
+  <div class="footer-links">
+    <a href="https://haiere.github.io/raia-footer/#privacy" class="footer-link" rel="noopener noreferrer">
+      <i class="fas fa-shield-alt"></i> Privacy
+    </a>
+  </div>
+  
+  <div class="footer-divider"></div>
+  <div class="copyright">© 2026 Haiere. All rights reserved. V. 1.2.1</div>
 </footer>
 
-    <!-- TOAST NOTIFICATION -->
-    <div class="toast hidden" id="toast">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5">
-        <polyline points="20 6 9 17 4 12" />
-      </svg>
-      <span id="toast-msg">Copied!</span>
+
+  <!-- ============================================================ TOAST ============================================================ -->
+  <div class="toast hidden" id="toast">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+    <span id="toast-msg">Copied!</span>
+  </div>
+
+  <!-- ============================================================ COOKIE BANNER ============================================================ -->
+  <div id="cookie-banner" class="hidden">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        <i class="fas fa-cookie-bite"></i>
+        <span>We use cookies to enhance your experience. By continuing, you accept our <a href="https://haiere.github.io/raia-footer/#cookie">cookie policy</a>.</span>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn-cookie btn-cookie-decline" onclick="declineCookies()">Decline</button>
+        <button class="btn-cookie btn-cookie-accept" onclick="acceptCookies()">Accept</button>
+      </div>
     </div>
   </div>
 
-  <!-- ============================================================JAVASCRIPT============================================================ -->
+  <!-- ============================================================ JAVASCRIPT ============================================================ -->
   <script>
-    /* ====================================================STATE==================================================== */
-    let diffMode = 'line'; // 'line' | 'word'
-    let viewMode = 'split'; // 'split' | 'unified'
-    let debounceTimer = null;
-    let lastDiffResult = []; // store for copy/export
+    /* ==================================================== COOKIE CONSENT ==================================================== */
+    (function initCookieBanner() {
+      const banner = document.getElementById('cookie-banner');
+      const consent = localStorage.getItem('cookie-consent');
+      if (!consent) {
+        setTimeout(() => {
+          banner.classList.remove('hidden');
+        }, 800);
+      }
+    })();
 
-    /* ====================================================TOOLBAR CONTROLS==================================================== */
+    function acceptCookies() {
+      localStorage.setItem('cookie-consent', 'accepted');
+      document.getElementById('cookie-banner').classList.add('hidden');
+      showToast('Cookies accepted ✓');
+    }
+
+    function declineCookies() {
+      localStorage.setItem('cookie-consent', 'declined');
+      document.getElementById('cookie-banner').classList.add('hidden');
+      showToast('Cookies declined');
+    }
+
+    /* ==================================================== STATE ==================================================== */
+    let diffMode = 'line';
+    let viewMode = 'split';
+    let debounceTimer = null;
+    let lastDiffResult = [];
+
+    /* ==================================================== TOOLBAR CONTROLS ==================================================== */
     function setMode(m) {
       diffMode = m;
       document.getElementById('mode-line').classList.toggle('active', m === 'line');
@@ -1339,6 +1519,7 @@
       updateCount('a');
       updateCount('b');
       resetOutput();
+      showToast('Cleared all text');
     }
 
     function clearPane(id) {
@@ -1354,9 +1535,10 @@
       updateCount('a');
       updateCount('b');
       debouncedCompare();
+      showToast('Swapped texts');
     }
 
-    /* ====================================================FILE UPLOAD==================================================== */
+    /* ==================================================== FILE UPLOAD ==================================================== */
     function loadFile(input, side) {
       const file = input.files[0];
       if (!file) return;
@@ -1365,29 +1547,28 @@
         document.getElementById('text-' + side).value = e.target.result;
         updateCount(side);
         debouncedCompare();
+        showToast(`Loaded: ${file.name}`);
       };
       reader.onerror = () => showToast('Failed to read file.');
       reader.readAsText(file);
-      input.value = ''; // reset so same file can be re-uploaded
+      input.value = '';
     }
 
-    /* ====================================================CHAR COUNT==================================================== */
+    /* ==================================================== CHAR COUNT ==================================================== */
     function updateCount(side) {
       const ta = document.getElementById('text-' + side);
       const el = document.getElementById('count-' + side);
-      const len = ta.value.length;
-      el.textContent = len.toLocaleString() + ' chars';
+      el.textContent = ta.value.length.toLocaleString() + ' chars';
     }
 
-    /* ====================================================DEBOUNCED COMPARE (live preview)==================================================== */
+    /* ==================================================== DEBOUNCED COMPARE ==================================================== */
     function debouncedCompare() {
       clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(runCompare, 500);
+      debounceTimer = setTimeout(runCompare, 350);
     }
 
-    /* ====================================================MAIN COMPARE FUNCTION==================================================== */
+    /* ==================================================== MAIN COMPARE ==================================================== */
     function runCompare() {
-      // Check library loaded
       if (typeof Diff === 'undefined') {
         showError('jsDiff library failed to load. Check your internet connection.');
         return;
@@ -1404,28 +1585,19 @@
       const ignoreCase = document.getElementById('opt-ignore-case').checked;
       const ignoreWS = document.getElementById('opt-ignore-ws').checked;
 
-      // Apply transformations
-      if (ignoreCase) {
-        textA = textA.toLowerCase();
-        textB = textB.toLowerCase();
-      }
+      let a = textA,
+        b = textB;
+      if (ignoreCase) { a = a.toLowerCase();
+        b = b.toLowerCase(); }
+      if (ignoreWS) { a = normalizeWhitespace(a);
+        b = normalizeWhitespace(b); }
 
-      if (ignoreWS) {
-        textA = normalizeWhitespace(textA);
-        textB = normalizeWhitespace(textB);
-      }
-
-      // Run diff
       let parts;
       try {
         if (diffMode === 'line') {
-          parts = Diff.diffLines(textA, textB, {
-            ignoreWhitespace: ignoreWS
-          });
+          parts = Diff.diffLines(a, b, { ignoreWhitespace: ignoreWS });
         } else {
-          parts = Diff.diffWords(textA, textB, {
-            ignoreWhitespace: ignoreWS
-          });
+          parts = Diff.diffWords(a, b, { ignoreWhitespace: ignoreWS });
         }
       } catch (e) {
         showError('Diff error: ' + e.message);
@@ -1434,24 +1606,19 @@
 
       lastDiffResult = parts;
 
-      // Render
       if (viewMode === 'unified') {
         renderUnified(parts);
       } else {
         renderSplit(parts);
       }
-
       updateStats(parts);
     }
 
-    /* ====================================================WHITESPACE NORMALIZATION==================================================== */
+    /* ==================================================== UTILITY ==================================================== */
     function normalizeWhitespace(text) {
-      return text.split('\n')
-        .map(line => line.trim().replace(/\s+/g, ' '))
-        .join('\n');
+      return text.split('\n').map(line => line.trim().replace(/\s+/g, ' ')).join('\n');
     }
 
-    /* ====================================================RESET OUTPUT==================================================== */
     function resetOutput() {
       const out = document.getElementById('diff-output');
       out.innerHTML = `
@@ -1463,7 +1630,7 @@
             <line x1="16" y1="17" x2="8" y2="17"/>
             <polyline points="10 9 9 9 8 9"/>
           </svg>
-          <p style="color:var(--slate);">Enter text in both panes and press <strong style="color:var(--blue)">Compare</strong><br/>or start typing — live preview is enabled.</p>
+          <p>Enter text in both panes and press <strong>Compare</strong><br />or start typing — live preview is enabled.</p>
         </div>`;
       document.getElementById('diff-stats').style.display = 'none';
       document.getElementById('stat-del-val').textContent = '0 removed';
@@ -1471,7 +1638,6 @@
       lastDiffResult = [];
     }
 
-    /* ====================================================UPDATE STATS==================================================== */
     function updateStats(parts) {
       let removed = 0,
         added = 0,
@@ -1482,53 +1648,52 @@
         else if (p.added) added += lines;
         else equal += lines;
       });
-
-      document.getElementById('ds-removed').textContent = `— ${removed} lines`;
-      document.getElementById('ds-added').textContent = `+ ${added} lines`;
-      document.getElementById('ds-equal').textContent = `= ${equal} lines`;
+      document.getElementById('ds-removed').textContent = `— ${removed}`;
+      document.getElementById('ds-added').textContent = `+ ${added}`;
+      document.getElementById('ds-equal').textContent = `= ${equal}`;
       document.getElementById('diff-stats').style.display = 'flex';
-
       document.getElementById('stat-del-val').textContent = `${removed} removed`;
       document.getElementById('stat-add-val').textContent = `${added} added`;
     }
 
-    /* ====================================================SHOW ERROR==================================================== */
     function showError(msg) {
       const out = document.getElementById('diff-output');
       out.innerHTML = `<div class="diff-placeholder"><p style="color:#f87171;">${esc(msg)}</p></div>`;
     }
 
-    /* ==================================================== ESCAPE HTML==================================================== */
     function esc(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    /* ====================================================RENDER UNIFIED VIEW==================================================== */
+    function splitLines(str) {
+      const lines = str.split('\n');
+      if (lines[lines.length - 1] === '') lines.pop();
+      return lines;
+    }
+
+    /* ==================================================== RENDER UNIFIED ==================================================== */
     function renderUnified(parts) {
       const out = document.getElementById('diff-output');
-
       if (diffMode === 'word') {
-        // Word mode: render inline spans in a single block
-        out.innerHTML = renderUnifiedWord(parts);
+        let html = '<div style="padding:14px 16px;font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--slate-bright);">';
+        parts.forEach(p => {
+          const e = esc(p.value);
+          if (p.removed) html += `<span class="word-del">${e}</span>`;
+          else if (p.added) html += `<span class="word-add">${e}</span>`;
+          else html += `<span>${e}</span>`;
+        });
+        html += '</div>';
+        out.innerHTML = html;
         return;
       }
 
-      // Line mode
-      let html = '<table class="unified-table" aria-label="Diff result">';
+      let html = '<table class="unified-table">';
       let lineOld = 1,
         lineNew = 1;
-
-      parts.forEach(part => {
-        const lines = part.value.split('\n');
-        // Remove trailing empty string from split
-        if (lines[lines.length - 1] === '') lines.pop();
-
+      parts.forEach(p => {
+        const lines = splitLines(p.value);
         lines.forEach(line => {
-          if (part.removed) {
+          if (p.removed) {
             html += `<tr class="row-del">
               <td class="gutter"></td>
               <td class="line-num">${lineOld++}</td>
@@ -1536,7 +1701,7 @@
               <td class="sign-col">−</td>
               <td class="line-content">${esc(line) || '&nbsp;'}</td>
             </tr>`;
-          } else if (part.added) {
+          } else if (p.added) {
             html += `<tr class="row-add">
               <td class="gutter"></td>
               <td class="line-num" style="color:transparent;">·</td>
@@ -1555,115 +1720,74 @@
           }
         });
       });
-
       html += '</table>';
       out.innerHTML = html;
     }
 
-    /* Word-level unified */
-    function renderUnifiedWord(parts) {
-      let html = '<div style="padding:14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--slate-bright);">';
-      parts.forEach(part => {
-        const escaped = esc(part.value);
-        if (part.removed) {
-          html += `<span class="word-del">${escaped}</span>`;
-        } else if (part.added) {
-          html += `<span class="word-add">${escaped}</span>`;
-        } else {
-          html += `<span>${escaped}</span>`;
-        }
-      });
-      html += '</div>';
-      return html;
-    }
-
-    /* ====================================================RENDER SPLIT VIEW==================================================== */
+    /* ==================================================== RENDER SPLIT ==================================================== */
     function renderSplit(parts) {
       const out = document.getElementById('diff-output');
 
       if (diffMode === 'word') {
-        // Word split: show original on left, changed on right
-        out.innerHTML = renderSplitWord(parts);
+        let leftHtml = '',
+          rightHtml = '';
+        parts.forEach(p => {
+          const e = esc(p.value);
+          if (p.removed) leftHtml += `<span class="word-del">${e}</span>`;
+          else if (p.added) rightHtml += `<span class="word-add">${e}</span>`;
+          else { leftHtml += `<span>${e}</span>`;
+            rightHtml += `<span>${e}</span>`; }
+        });
+        const wrap = (content, side) => `
+          <div class="split-col" id="split-${side}">
+            <div class="split-col-header ${side === 'left' ? 'left' : 'right'}">
+              ${side === 'left' ? 
+                '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Original' :
+                '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Changed'}
+            </div>
+            <div style="padding:14px 16px;font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--slate-bright);">${content || '&nbsp;'}</div>
+          </div>`;
+        out.innerHTML = `<div class="split-wrapper">${wrap(leftHtml, 'left')}${wrap(rightHtml, 'right')}</div>`;
         return;
       }
 
-      // Line mode split
-      // Build aligned rows: pair removed with added lines
-      const leftRows = [];
-      const rightRows = [];
-
-      // Collect pairs
+      const leftRows = [],
+        rightRows = [];
       let i = 0;
       while (i < parts.length) {
         const p = parts[i];
         if (!p.removed && !p.added) {
-          // unchanged block
           const lines = splitLines(p.value);
-          lines.forEach(l => {
-            leftRows.push({
-              type: 'neu',
-              value: l
-            });
-            rightRows.push({
-              type: 'neu',
-              value: l
-            });
-          });
+          lines.forEach(l => { leftRows.push({ type: 'neu', value: l });
+            rightRows.push({ type: 'neu', value: l }); });
           i++;
         } else if (p.removed && parts[i + 1] && parts[i + 1].added) {
-          // paired change
           const removedLines = splitLines(p.value);
           const addedLines = splitLines(parts[i + 1].value);
           const maxLen = Math.max(removedLines.length, addedLines.length);
           for (let j = 0; j < maxLen; j++) {
-            leftRows.push({
-              type: j < removedLines.length ? 'del' : 'empty',
-              value: removedLines[j] || ''
-            });
-            rightRows.push({
-              type: j < addedLines.length ? 'add' : 'empty',
-              value: addedLines[j] || ''
-            });
+            leftRows.push({ type: j < removedLines.length ? 'del' : 'empty', value: removedLines[j] || '' });
+            rightRows.push({ type: j < addedLines.length ? 'add' : 'empty', value: addedLines[j] || '' });
           }
           i += 2;
         } else if (p.removed) {
-          const lines = splitLines(p.value);
-          lines.forEach(l => {
-            leftRows.push({
-              type: 'del',
-              value: l
-            });
-            rightRows.push({
-              type: 'empty',
-              value: ''
-            });
-          });
+          splitLines(p.value).forEach(l => { leftRows.push({ type: 'del', value: l });
+            rightRows.push({ type: 'empty', value: '' }); });
           i++;
         } else if (p.added) {
-          const lines = splitLines(p.value);
-          lines.forEach(l => {
-            leftRows.push({
-              type: 'empty',
-              value: ''
-            });
-            rightRows.push({
-              type: 'add',
-              value: l
-            });
-          });
+          splitLines(p.value).forEach(l => { leftRows.push({ type: 'empty', value: '' });
+            rightRows.push({ type: 'add', value: l }); });
           i++;
-        } else {
-          i++;
-        }
+        } else { i++; }
       }
 
       const buildTable = (rows, side) => {
-        let lineNum = 1;
-        let t = `<table class="split-table">`;
+        let lineNum = 1,
+          t = `<table class="split-table">`;
         rows.forEach(row => {
           if (row.type === 'empty') {
             t += `<tr class="empty-row">
-              <td class="gutter" style="background:rgba(148,163,184,0.06);width:3px;"></td>
+              <td class="gutter" style="background:rgba(148,163,184,0.04);width:3px;"></td>
               <td class="line-num" style="color:transparent;">·</td>
               <td class="sign-col" style="color:transparent;">·</td>
               <td class="line-content">&nbsp;</td>
@@ -1716,81 +1840,32 @@
 
       out.innerHTML = html;
 
-      // Sync scroll between split columns
       const left = document.getElementById('split-left');
       const right = document.getElementById('split-right');
       let syncing = false;
-      left.addEventListener('scroll', () => {
+      const syncScroll = (src, dst) => {
         if (syncing) return;
         syncing = true;
-        right.scrollTop = left.scrollTop;
-        right.scrollLeft = left.scrollLeft;
+        dst.scrollTop = src.scrollTop;
+        dst.scrollLeft = src.scrollLeft;
         syncing = false;
-      });
-      right.addEventListener('scroll', () => {
-        if (syncing) return;
-        syncing = true;
-        left.scrollTop = right.scrollTop;
-        left.scrollLeft = right.scrollLeft;
-        syncing = false;
-      });
+      };
+      left.addEventListener('scroll', () => syncScroll(left, right));
+      right.addEventListener('scroll', () => syncScroll(right, left));
     }
 
-    /* Word split */
-    function renderSplitWord(parts) {
-      let leftHtml = '';
-      let rightHtml = '';
-
-      parts.forEach(part => {
-        const escaped = esc(part.value);
-        if (part.removed) {
-          leftHtml += `<span class="word-del">${escaped}</span>`;
-        } else if (part.added) {
-          rightHtml += `<span class="word-add">${escaped}</span>`;
-        } else {
-          leftHtml += `<span>${escaped}</span>`;
-          rightHtml += `<span>${escaped}</span>`;
-        }
-      });
-
-      const wrap = (content, side) => `
-        <div class="split-col" id="split-${side}">
-          <div class="split-col-header ${side === 'left' ? 'left' : 'right'}">
-            ${side === 'left' ?
-              '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Original' :
-              '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Changed'}
-          </div>
-          <div style="padding:14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--slate-bright);">${content || '&nbsp;'}</div>
-        </div>`;
-
-      return `<div class="split-wrapper">${wrap(leftHtml, 'left')}${wrap(rightHtml, 'right')}</div>`;
-    }
-
-    /* Helper: split text into lines, preserving empties correctly */
-    function splitLines(str) {
-      const lines = str.split('\n');
-      if (lines[lines.length - 1] === '') lines.pop();
-      return lines;
-    }
-
-    /* ====================================================COPY DIFF ==================================================== */
+    /* ==================================================== COPY & EXPORT ==================================================== */
     function copyDiff() {
-      if (!lastDiffResult.length) {
-        showToast('Nothing to copy yet.');
-        return;
-      }
-
+      if (!lastDiffResult.length) { showToast('Nothing to copy yet.'); return; }
       const text = lastDiffResult.map(p => {
         const lines = splitLines(p.value);
         if (p.removed) return lines.map(l => '- ' + l).join('\n');
         if (p.added) return lines.map(l => '+ ' + l).join('\n');
         return lines.map(l => '  ' + l).join('\n');
       }).join('\n');
-
       navigator.clipboard.writeText(text)
-        .then(() => showToast('Diff copied to clipboard!'))
+        .then(() => showToast('Diff copied!'))
         .catch(() => {
-          // Fallback
           const ta = document.createElement('textarea');
           ta.value = text;
           document.body.appendChild(ta);
@@ -1801,33 +1876,25 @@
         });
     }
 
-    /* ====================================================DOWNLOAD DIFF==================================================== */
     function downloadDiff() {
-      if (!lastDiffResult.length) {
-        showToast('Nothing to export yet.');
-        return;
-      }
-
+      if (!lastDiffResult.length) { showToast('Nothing to export yet.'); return; }
       const text = lastDiffResult.map(p => {
         const lines = splitLines(p.value);
         if (p.removed) return lines.map(l => '- ' + l).join('\n');
         if (p.added) return lines.map(l => '+ ' + l).join('\n');
         return lines.map(l => '  ' + l).join('\n');
       }).join('\n');
-
-      const blob = new Blob([text], {
-        type: 'text/plain'
-      });
+      const blob = new Blob([text], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'smart-diff-output.diff';
+      a.download = 'raia-delta-diff.diff';
       a.click();
       URL.revokeObjectURL(url);
       showToast('Diff exported!');
     }
 
-    /* ====================================================TOAST==================================================== */
+    /* ==================================================== TOAST ==================================================== */
     let toastTimer;
 
     function showToast(msg, duration = 2500) {
@@ -1838,7 +1905,7 @@
       toastTimer = setTimeout(() => t.classList.add('hidden'), duration);
     }
 
-    /* ====================================================KEYBOARD SHORTCUT: Ctrl+Enter to compare ==================================================== */
+    /* ==================================================== KEYBOARD SHORTCUT ==================================================== */
     document.addEventListener('keydown', e => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
         e.preventDefault();
@@ -1846,7 +1913,7 @@
       }
     });
 
-    /* ====================================================  INIT  ==================================================== */
+    /* ==================================================== INIT ==================================================== */
     updateCount('a');
     updateCount('b');
   </script>
