@@ -1,34 +1,29 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Raia Delta — Smart Text Diff Checker</title>
-
-    <!-- ========== SEO META ========== -->
+    <!-- SEO META -->
     <meta name="description" content="Raia Delta is a lightweight, privacy-first text comparison tool featuring smart line & word diffing, split/unified views, and instant export. 100% client-side." />
     <meta name="keywords" content="diff checker, text comparison tool, smart diff, code diff, file comparison, privacy-first tools, raia delta, haiere" />
     <meta name="author" content="Haiere" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://raia-delta.haiere.workers.dev/" />
-
-    <!-- ========== OPEN GRAPH / SOCIAL ========== -->
+    <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://raia-delta.haiere.workers.dev" />
     <meta property="og:title" content="Raia Delta — Smart & Privacy-First Text Diff Checker" />
     <meta property="og:description" content="Compare text and code seamlessly. Supports line/word diff, split/unified view, and secure local exports without server tracking." />
     <meta property="og:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
-
-    <!-- ========== TWITTER CARD ========== -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Raia Delta — Smart & Privacy-First Text Diff Checker" />
     <meta name="twitter:description" content="Compare text and code seamlessly with smart line/word diffing and split/unified views. 100% client-side." />
     <meta name="twitter:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
-
-    <!-- ========== FAVICON ========== -->
+    <!-- Favicon -->
     <link rel="icon" type="image/webp" href="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
-
-    <!-- ========== SCHEMA.ORG (JSON-LD) ========== -->
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -50,23 +45,21 @@
         }
     </script>
 
-    <!-- ========== FONTS ========== -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
 
-    <!-- ========== FONT AWESOME ========== -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- ========== DIFF LIBRARY ========== -->
+    <!-- Diff Library -->
     <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js" defer>
     </script>
 
     <style>
-        /* ============================================================
-           CSS VARIABLES & RESET
-           ============================================================ */
+        /* CSS Variables & Reset */
         :root {
             --navy: #020617;
             --navy-1: #0a1628;
@@ -147,9 +140,7 @@
             background: var(--slate);
         }
 
-        /* ============================================================
-           UTILITY
-           ============================================================ */
+        /* Utility */
         .sr-only {
             position: absolute !important;
             width: 1px !important;
@@ -161,9 +152,7 @@
             border: 0 !important;
         }
 
-        /* ============================================================
-           GLASS CARD
-           ============================================================ */
+        /* Glass Card */
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(var(--glass-blur)) saturate(1.3);
@@ -173,7 +162,6 @@
             box-shadow: var(--shadow-card), var(--shadow-glow);
             transition: all var(--transition);
         }
-
         .glass:hover {
             border-color: var(--glass-border-hover);
         }
@@ -187,14 +175,11 @@
             box-shadow: var(--shadow-sm);
             transition: all var(--transition);
         }
-
         .glass-light:hover {
             border-color: rgba(148, 163, 184, 0.14);
         }
 
-        /* ============================================================
-           HEADER
-           ============================================================ */
+        /* Header */
         .header {
             position: fixed;
             top: 0;
@@ -212,7 +197,6 @@
             border-bottom: 1px solid rgba(148, 163, 184, 0.06);
             transition: all var(--transition);
         }
-
         .header.scrolled {
             background: rgba(2, 6, 23, 0.78);
             border-bottom-color: rgba(148, 163, 184, 0.1);
@@ -277,13 +261,12 @@
             box-shadow: 0 0 24px rgba(59, 130, 246, 0.12);
         }
 
-        /* ---- NAV ---- */
+        /* Nav */
         .header-nav {
             display: flex;
             align-items: center;
             gap: 6px;
         }
-
         .header-nav a {
             color: var(--slate);
             text-decoration: none;
@@ -302,7 +285,6 @@
             color: var(--white);
             background: rgba(59, 130, 246, 0.1);
         }
-
         .header-nav .nav-cta {
             background: var(--blue);
             color: #fff;
@@ -359,7 +341,7 @@
             box-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
         }
 
-        /* ---- HAMBURGER ---- */
+        /* Hamburger */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -394,7 +376,7 @@
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        /* ---- MOBILE MENU ---- */
+        /* Mobile Menu */
         .mobile-menu {
             display: none;
             position: fixed;
@@ -453,9 +435,7 @@
             }
         }
 
-        /* ============================================================
-           HERO
-           ============================================================ */
+        /* Hero */
         .hero {
             padding: calc(var(--header-height) + 40px) 24px 32px;
             text-align: center;
@@ -534,9 +514,7 @@
             flex-wrap: wrap;
         }
 
-        /* ============================================================
-           BUTTONS
-           ============================================================ */
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -613,9 +591,7 @@
             transform: scale(1.08);
         }
 
-        /* ============================================================
-           APP WRAPPER
-           ============================================================ */
+        /* App Wrapper */
         .app-wrapper {
             max-width: 1440px;
             margin: 0 auto;
@@ -625,9 +601,7 @@
             gap: 18px;
         }
 
-        /* ============================================================
-           TOOLBAR
-           ============================================================ */
+        /* Toolbar */
         .toolbar {
             display: flex;
             align-items: center;
@@ -669,7 +643,7 @@
             margin-right: 2px;
         }
 
-        /* ---- TOGGLE GROUP ---- */
+        /* Toggle Group */
         .toggle-group {
             display: flex;
             background: rgba(2, 6, 23, 0.4);
@@ -701,7 +675,7 @@
             color: var(--white);
         }
 
-        /* ---- CHECKBOX ---- */
+        /* Checkbox */
         .checkbox-label {
             display: flex;
             align-items: center;
@@ -752,9 +726,7 @@
             outline-offset: 2px;
         }
 
-        /* ============================================================
-           INPUT PANES
-           ============================================================ */
+        /* Input Panes */
         .input-area {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -888,9 +860,7 @@
             font-style: italic;
         }
 
-        /* ============================================================
-           DIFF OUTPUT
-           ============================================================ */
+        /* Diff Output */
         .diff-section {
             background: rgba(10, 22, 40, 0.5);
             backdrop-filter: blur(12px) saturate(1.2);
@@ -961,7 +931,7 @@
             transition: all var(--transition);
         }
 
-        /* ---- PLACEHOLDER ---- */
+        /* Placeholder */
         .diff-placeholder {
             display: flex;
             flex-direction: column;
@@ -988,9 +958,7 @@
             font-weight: 600;
         }
 
-        /* ============================================================
-           UNIFIED VIEW
-           ============================================================ */
+        /* Unified View */
         .unified-table {
             width: 100%;
             border-collapse: collapse;
@@ -1090,9 +1058,7 @@
             filter: brightness(1.06);
         }
 
-        /* ============================================================
-           SPLIT VIEW
-           ============================================================ */
+        /* Split View */
         .split-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1169,9 +1135,7 @@
             margin-left: auto;
         }
 
-        /* ============================================================
-           FOOTER
-           ============================================================ */
+        /* Footer */
         .footer {
             margin-top: 48px;
             padding: 48px 24px 32px;
@@ -1321,9 +1285,7 @@
             z-index: 1;
         }
 
-        /* ============================================================
-           TOAST
-           ============================================================ */
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 32px;
@@ -1353,9 +1315,7 @@
             pointer-events: none;
         }
 
-        /* ============================================================
-           COOKIE BANNER
-           ============================================================ */
+        /* Cookie Banner */
         #cookie-banner {
             position: fixed;
             bottom: 0;
@@ -1437,11 +1397,9 @@
             color: var(--white);
         }
 
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
+        /* Responsive */
 
-        /* --- 1024px & below --- */
+        /* 1024px & below */
         @media (max-width: 1024px) {
             .header {
                 padding: 0 20px;
@@ -1454,7 +1412,7 @@
             }
         }
 
-        /* --- 820px & below --- */
+        /* 820px & below */
         @media (max-width: 820px) {
             .split-wrapper {
                 grid-template-columns: 1fr;
@@ -1468,12 +1426,11 @@
             }
         }
 
-        /* --- 768px & below --- */
+        /* 768px & below */
         @media (max-width: 768px) {
             :root {
                 --header-height: 60px;
             }
-
             .header {
                 padding: 0 16px;
             }
@@ -1491,19 +1448,16 @@
                 width: 5px;
                 height: 5px;
             }
-
             .input-area {
                 grid-template-columns: 1fr;
                 gap: 12px;
             }
-
             .hero h1 {
                 font-size: clamp(1.8rem, 5vw, 2.6rem);
             }
             .hero p {
                 font-size: 0.95rem;
             }
-
             .toolbar {
                 padding: 10px 14px;
                 gap: 6px 10px;
@@ -1514,7 +1468,6 @@
             .toolbar-divider {
                 height: 22px;
             }
-
             .diff-header {
                 padding: 10px 14px;
             }
@@ -1526,17 +1479,14 @@
                 font-size: 11px;
                 padding: 4px 10px;
             }
-
             textarea {
                 min-height: 150px;
                 font-size: 12px;
                 padding: 12px 14px;
             }
-
             .pane-header {
                 padding: 8px 14px;
             }
-
             .toast {
                 bottom: 20px;
                 right: 20px;
@@ -1544,13 +1494,12 @@
                 padding: 10px 18px;
                 font-size: 12px;
             }
-
             .footer {
                 padding: 32px 16px 24px;
             }
         }
 
-        /* --- 640px & below --- */
+        /* 640px & below */
         @media (max-width: 640px) {
             .hero {
                 padding: calc(var(--header-height) + 20px) 12px 20px;
@@ -1563,7 +1512,6 @@
                 width: 100%;
                 justify-content: center;
             }
-
             .header-brand {
                 font-size: 16px;
             }
@@ -1574,12 +1522,10 @@
             .header-logo {
                 height: 30px;
             }
-
             .app-wrapper {
                 padding: 0 10px 24px;
                 gap: 12px;
             }
-
             .toolbar {
                 padding: 8px 10px;
                 gap: 4px 8px;
@@ -1609,7 +1555,6 @@
                 width: 15px;
                 height: 15px;
             }
-
             .diff-output {
                 min-height: 260px;
             }
@@ -1618,7 +1563,6 @@
                 font-size: 13px;
                 padding: 16px;
             }
-
             .unified-table,
             .split-table {
                 font-size: 11px;
@@ -1635,12 +1579,10 @@
             .line-content {
                 padding: 1px 10px 1px 2px;
             }
-
             .split-col-header {
                 font-size: 10px;
                 padding: 5px 12px;
             }
-
             .cookie-content {
                 flex-direction: column;
                 text-align: center;
@@ -1659,7 +1601,7 @@
             }
         }
 
-        /* --- 480px & below --- */
+        /* 480px & below */
         @media (max-width: 480px) {
             .header {
                 padding: 0 12px;
@@ -1677,20 +1619,17 @@
             .header-stats .stat-pill span:not(.dot) {
                 display: none;
             }
-
             .hero h1 {
                 font-size: 1.6rem;
             }
             .hero p {
                 font-size: 0.88rem;
             }
-
             textarea {
                 min-height: 120px;
                 font-size: 11px;
                 padding: 10px 12px;
             }
-
             .btn {
                 font-size: 11px;
                 padding: 5px 12px;
@@ -1702,7 +1641,6 @@
                 padding: 3px 8px;
                 min-height: 24px;
             }
-
             .pane-header {
                 padding: 6px 10px;
             }
@@ -1717,7 +1655,6 @@
                 font-size: 10px;
                 padding: 2px 8px;
             }
-
             .diff-header {
                 padding: 8px 10px;
             }
@@ -1728,7 +1665,6 @@
                 font-size: 9px;
                 gap: 4px;
             }
-
             .footer-name {
                 font-size: 1.2rem;
             }
@@ -1741,7 +1677,6 @@
                 height: 34px;
                 font-size: 0.85rem;
             }
-
             .toast {
                 bottom: 16px;
                 right: 16px;
@@ -1752,7 +1687,7 @@
             }
         }
 
-        /* --- 390px & below --- */
+        /* 390px & below */
         @media (max-width: 390px) {
             .header-brand {
                 font-size: 12px;
@@ -1763,7 +1698,6 @@
             .hero h1 {
                 font-size: 1.4rem;
             }
-
             .toolbar .btn {
                 font-size: 10px;
                 padding: 4px 10px;
@@ -1782,7 +1716,7 @@
             }
         }
 
-        /* --- 320px --- */
+        /* 320px */
         @media (max-width: 320px) {
             .header {
                 padding: 0 8px;
@@ -1811,9 +1745,7 @@
             }
         }
 
-        /* ============================================================
-           ANIMATIONS
-           ============================================================ */
+        /* Animations */
         @keyframes pulse-ring {
             0%,
             100% {
@@ -1855,9 +1787,7 @@
             }
         }
 
-        /* ============================================================
-           LOADING BAR (subtle)
-           ============================================================ */
+        /* Loading Bar */
         .loading-bar {
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--blue), transparent);
@@ -1878,16 +1808,14 @@
 </head>
 
 <body>
-    <!-- ============================================================
-    HEADER
-    ============================================================ -->
+    <!-- Header -->
     <header class="header" id="mainHeader" role="banner">
         <div class="header-left">
             <img class="header-logo" src="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" alt="Haiere Logo" loading="lazy" decoding="async" width="38" height="38" onerror="this.style.display='none'" />
             <a href="/" class="header-brand" aria-label="Raia Delta Home">
                 Raia<span>Delta</span>
             </a>
-            <span class="header-badge">v1.2.1</span>
+            <span class="header-badge">v1.2.3</span>
         </div>
 
         <!-- Desktop Nav -->
@@ -1929,9 +1857,7 @@
         </a>
     </div>
 
-    <!-- ============================================================
-    HERO
-    ============================================================ -->
+    <!-- Hero -->
     <section class="hero" aria-labelledby="hero-title">
         <div class="hero-badge">
             <span class="dot-pulse"></span>
@@ -1958,12 +1884,10 @@
         </div>
     </section>
 
-    <!-- ============================================================
-    APP WRAPPER
-    ============================================================ -->
+    <!-- App Wrapper -->
     <main class="app-wrapper" role="main">
 
-        <!-- TOOLBAR -->
+        <!-- Toolbar -->
         <div class="toolbar" role="toolbar" aria-label="Diff controls">
             <div class="toolbar-section">
                 <button class="btn btn-primary btn-sm" id="btn-compare" onclick="runCompare()" aria-label="Compare texts">
@@ -2023,7 +1947,7 @@
             </div>
         </div>
 
-        <!-- INPUT PANES -->
+        <!-- Input Panes -->
         <div class="input-area">
             <section class="pane" aria-label="Original text input">
                 <div class="pane-header">
@@ -2072,7 +1996,7 @@
             </section>
         </div>
 
-        <!-- DIFF OUTPUT -->
+        <!-- Diff Output -->
         <section class="diff-section" aria-label="Diff output">
             <div class="diff-header">
                 <div class="diff-title">
@@ -2125,9 +2049,7 @@
 
     </main>
 
-    <!-- ============================================================
-    FOOTER
-    ============================================================ -->
+    <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <img src="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" alt="Haiere Logo" class="footer-logo" loading="lazy" decoding="async" width="60" height="60" />
         <div class="footer-name">Raia<span>Delta</span></div>
@@ -2141,26 +2063,12 @@
             </a>
         </div>
 
-        <div class="footer-social">
-            <a href="#" class="social-link" aria-label="GitHub">
-                <i class="fab fa-github" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="Twitter">
-                <i class="fab fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-        </div>
-
         <div class="footer-divider" aria-hidden="true"></div>
 
-        <div class="copyright">© 2026 Haiere. All rights reserved. v1.2.1</div>
+        <div class="copyright">© 2026 Haiere. All rights reserved. v1.2.3</div>
     </footer>
 
-    <!-- ============================================================
-    TOAST
-    ============================================================ -->
+    <!-- Toast -->
     <div class="toast hidden" id="toast" role="alert" aria-live="polite">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" aria-hidden="true">
             <polyline points="20 6 9 17 4 12" />
@@ -2168,9 +2076,7 @@
         <span id="toast-msg">Copied!</span>
     </div>
 
-    <!-- ============================================================
-    COOKIE BANNER
-    ============================================================ -->
+    <!-- Cookie Banner -->
     <div id="cookie-banner" class="hidden" role="dialog" aria-label="Cookie consent">
         <div class="cookie-content">
             <div class="cookie-text">
@@ -2184,13 +2090,9 @@
         </div>
     </div>
 
-    <!-- ============================================================
-    JAVASCRIPT
-    ============================================================ -->
+    <!-- JavaScript -->
     <script>
-        /* ====================================================
-           COOKIE CONSENT
-           ==================================================== */
+        /* Cookie Consent */
         (function initCookieBanner() {
             var banner = document.getElementById('cookie-banner');
             var consent = localStorage.getItem('cookie-consent');
@@ -2213,17 +2115,13 @@
             showToast('Cookies declined');
         }
 
-        /* ====================================================
-           STATE
-           ==================================================== */
+        /* State */
         var diffMode = 'line';
         var viewMode = 'split';
         var debounceTimer = null;
         var lastDiffResult = [];
 
-        /* ====================================================
-           HEADER SCROLL
-           ==================================================== */
+        /* Header Scroll */
         (function headerScroll() {
             var header = document.getElementById('mainHeader');
             var didScroll = false;
@@ -2242,9 +2140,7 @@
             }, { passive: true });
         })();
 
-        /* ====================================================
-           HAMBURGER
-           ==================================================== */
+        /* Hamburger */
         (function hamburger() {
             var btn = document.getElementById('hamburgerBtn');
             var menu = document.getElementById('mobileMenu');
@@ -2256,7 +2152,6 @@
                     menu.focus();
                 }
             });
-            // Close on escape
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && menu.classList.contains('open')) {
                     menu.classList.remove('open');
@@ -2265,7 +2160,6 @@
                     btn.focus();
                 }
             });
-            // Close on outside click
             document.addEventListener('click', function(e) {
                 if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
                     menu.classList.remove('open');
@@ -2275,9 +2169,7 @@
             });
         })();
 
-        /* ====================================================
-           TOOLBAR CONTROLS
-           ==================================================== */
+        /* Toolbar Controls */
         function setMode(m) {
             diffMode = m;
             document.getElementById('mode-line').classList.toggle('active', m === 'line');
@@ -2323,9 +2215,7 @@
             showToast('Swapped texts');
         }
 
-        /* ====================================================
-           FILE UPLOAD
-           ==================================================== */
+        /* File Upload */
         function loadFile(input, side) {
             var file = input.files[0];
             if (!file) return;
@@ -2341,26 +2231,20 @@
             input.value = '';
         }
 
-        /* ====================================================
-           CHAR COUNT
-           ==================================================== */
+        /* Char Count */
         function updateCount(side) {
             var ta = document.getElementById('text-' + side);
             var el = document.getElementById('count-' + side);
             el.textContent = ta.value.length.toLocaleString() + ' chars';
         }
 
-        /* ====================================================
-           DEBOUNCED COMPARE
-           ==================================================== */
+        /* Debounced Compare */
         function debouncedCompare() {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(runCompare, 350);
         }
 
-        /* ====================================================
-           MAIN COMPARE
-           ==================================================== */
+        /* Main Compare */
         function runCompare() {
             if (typeof Diff === 'undefined') {
                 showError('jsDiff library failed to load. Check your internet connection.');
@@ -2407,9 +2291,7 @@
             updateStats(parts);
         }
 
-        /* ====================================================
-           UTILITY
-           ==================================================== */
+        /* Utility */
         function normalizeWhitespace(text) {
             return text.split('\n').map(function(line) { return line.trim().replace(/\s+/g, ' '); }).join('\n');
         }
@@ -2467,9 +2349,7 @@
             return lines;
         }
 
-        /* ====================================================
-           RENDER UNIFIED
-           ==================================================== */
+        /* Render Unified */
         function renderUnified(parts) {
             var out = document.getElementById('diff-output');
             if (diffMode === 'word') {
@@ -2522,9 +2402,7 @@
             out.innerHTML = html;
         }
 
-        /* ====================================================
-           RENDER SPLIT
-           ==================================================== */
+        /* Render Split */
         function renderSplit(parts) {
             var out = document.getElementById('diff-output');
 
@@ -2658,9 +2536,7 @@
             }
         }
 
-        /* ====================================================
-           COPY & EXPORT
-           ==================================================== */
+        /* Copy & Export */
         function copyDiff() {
             if (!lastDiffResult.length) { showToast('Nothing to copy yet.'); return; }
             var text = lastDiffResult.map(function(p) {
@@ -2714,9 +2590,7 @@
             showToast('Diff exported!');
         }
 
-        /* ====================================================
-           TOAST
-           ==================================================== */
+        /* Toast */
         var toastTimer;
 
         function showToast(msg, duration) {
@@ -2728,9 +2602,7 @@
             toastTimer = setTimeout(function() { t.classList.add('hidden'); }, duration);
         }
 
-        /* ====================================================
-           KEYBOARD SHORTCUT
-           ==================================================== */
+        /* Keyboard Shortcut */
         document.addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
                 e.preventDefault();
@@ -2738,13 +2610,11 @@
             }
         });
 
-        /* ====================================================
-           INIT
-           ==================================================== */
+        /* Init */
         updateCount('a');
         updateCount('b');
 
-        console.log('🚀 Raia Delta v1.2.1 — Smart Text Diff Checker');
+        console.log('🚀 Raia Delta v1.2.3 — Smart Text Diff Checker');
         console.log('📦 Built with ❤️ by Haiere');
     </script>
 </body>
