@@ -155,7 +155,11 @@ In Unified view, all changes are presented in a single table with clear visual i
 
 ```
 raia-delta/
-└── index.html    # Single-file web application
+├── index.html          # Main HTML structure and entry point
+├── css/
+│   └── style.css       # Stylesheets and layout designs
+└── js/
+    └── script.js          # Core application logic and event handling
 ```
 
 The entire tool is contained in a single HTML file with embedded CSS and JavaScript. This makes it portable and easy to distribute.
@@ -278,7 +282,7 @@ All rights reserved. This tool is provided for personal and internal use. Unauth
 
 ## Author
 
-Developed and maintained by Haiere.
+Developed and maintained by Haiere & Hajir Studio.
 
 ***
 
