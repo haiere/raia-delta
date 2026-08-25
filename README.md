@@ -1,7 +1,7 @@
 # Raia Delta
 
 [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-lightgrey.svg)](#license)
-[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)](#)
+[![Version](https://img.shields.io/badge/version-1.2.3-brightgreen.svg)](#)
 [![Status](https://img.shields.io/badge/status-active-success.svg)](#)
 [![Website](https://img.shields.io/badge/website-raia--delta.haiere.workers.dev-3B82F6.svg)](https://raia-delta.haiere.workers.dev/)
 
