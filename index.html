@@ -2,56 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Raia Delta | Smart Text Diff Checker</title>
-<meta name="description" content="Raia Delta is a lightweight, privacy-first text diff checker with smart line and word comparison, split and unified views, and instant export. 100% client-side." />
-<meta name="keywords" content="diff checker, text comparison tool, smart diff, code diff, file comparison, privacy-first tools, Raia Delta, Haiere" />
-<meta name="author" content="Haiere" />
-<meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://raia-delta.haiere.workers.dev/" />
+    <title>Raia Delta | Smart Text Diff Checker</title>
+    <meta name="description" content="Raia Delta is a lightweight, privacy-first text diff checker with smart line and word comparison, split and unified views, and instant export. 100% client-side." />
+    <meta name="keywords" content="diff checker, text comparison tool, smart diff, code diff, file comparison, privacy-first tools, Raia Delta, Haiere" />
+    <meta name="author" content="Haiere" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://raia-delta.haiere.workers.dev/" />
 
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://raia-delta.haiere.workers.dev/" />
-<meta property="og:title" content="Raia Delta | Smart Text Diff Checker" />
-<meta property="og:description" content="Compare text and code with smart line and word diffing, split and unified views, and instant local export. 100% client-side." />
-<meta property="og:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Raia Delta text diff checker preview" />
-<meta property="og:site_name" content="Raia Delta" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://raia-delta.haiere.workers.dev/" />
+    <meta property="og:title" content="Raia Delta | Smart Text Diff Checker" />
+    <meta property="og:description" content="Compare text and code with smart line and word diffing, split and unified views, and instant local export. 100% client-side." />
+    <meta property="og:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Raia Delta text diff checker preview" />
+    <meta property="og:site_name" content="Raia Delta" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Raia Delta | Smart Text Diff Checker" />
-<meta name="twitter:description" content="Compare text and code with smart line and word diffing, split and unified views, and instant local export." />
-<meta name="twitter:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
-<meta name="twitter:image:alt" content="Raia Delta text diff checker preview" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Raia Delta | Smart Text Diff Checker" />
+    <meta name="twitter:description" content="Compare text and code with smart line and word diffing, split and unified views, and instant local export." />
+    <meta name="twitter:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
+    <meta name="twitter:image:alt" content="Raia Delta text diff checker preview" />
 
-<link rel="icon" type="image/webp" href="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
+    <link rel="icon" type="image/webp" href="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Raia Delta",
-  "description": "A lightweight, privacy-first text diff checker with smart line and word comparison, split and unified views, and instant export.",
-  "url": "https://raia-delta.haiere.workers.dev/",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "All",
-  "browserRequirements": "Requires JavaScript",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "author": {
-    "@type": "Organization",
-    "name": "Haiere"
-  }
-}
-</script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Raia Delta",
+      "description": "A lightweight, privacy-first text diff checker with smart line and word comparison, split and unified views, and instant export.",
+      "url": "https://raia-delta.haiere.workers.dev/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Haiere"
+      }
+    }
+    </script>
 
-    <!-- Font Preconnect -->
+    <!-- Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -60,16 +62,16 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Diff Library -->
-    <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js" defer>
-    </script>
-    
-    <link rel="stylesheet" href="style.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
 
+    <!-- Diff Library & Script -->
+    <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <!--HEADER-->
+    <!-- HEADER -->
     <header class="header" id="mainHeader" role="banner">
         <div class="header-left">
             <img class="header-logo" src="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" alt="Haiere Logo" loading="lazy" decoding="async" width="38" height="38" onerror="this.style.display='none'" />
@@ -129,14 +131,14 @@
         </p>
 
         <div class="hero-actions">
-            <button class="btn btn-primary" type="button" onclick="document.getElementById('text-a').focus(); runCompare();">
+            <button class="btn btn-primary" type="button" onclick="focusAndCompare()">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                 </svg>
                 Compare Now
             </button>
 
-            <button class="btn btn-ghost" type="button" onclick="document.getElementById('text-a').focus();">
+            <button class="btn btn-ghost" type="button" onclick="focusInputA()">
                 <i class="fas fa-arrow-right" aria-hidden="true" style="font-size:12px;"></i>
                 Start Typing
             </button>
@@ -161,7 +163,8 @@
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <polyline points="3 6 5 6 21 6" />
                         <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-                        <path d="M10 11v6" /><path d="M14 11v6" />
+                        <path d="M10 11v6" />
+                        <path d="M14 11v6" />
                     </svg>
                     Clear
                 </button>
@@ -230,13 +233,13 @@
                             Upload
                         </label>
 
-                        <input type="file" id="upload-a" accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py" aria-label="Upload original text file" />
+                        <input type="file" id="upload-a" accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py" aria-label="Upload original text file" onchange="loadFile(this, 'a')" />
 
                         <button class="btn btn-sm btn-danger" type="button" onclick="clearPane('a')" aria-label="Clear original text">✕</button>
                     </div>
                 </div>
 
-                <textarea id="text-a" placeholder="Paste or type original text here…" spellcheck="false" aria-label="Original text"></textarea>
+                <textarea id="text-a" placeholder="Paste or type original text here…" spellcheck="false" aria-label="Original text" oninput="updateCount('a'); debouncedCompare();"></textarea>
             </section>
 
             <section class="pane" aria-labelledby="paneB-title">
@@ -258,13 +261,13 @@
                             Upload
                         </label>
 
-                        <input type="file" id="upload-b" accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py" aria-label="Upload changed text file" />
+                        <input type="file" id="upload-b" accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py" aria-label="Upload changed text file" onchange="loadFile(this, 'b')" />
 
                         <button class="btn btn-sm btn-danger" type="button" onclick="clearPane('b')" aria-label="Clear changed text">✕</button>
                     </div>
                 </div>
 
-                <textarea id="text-b" placeholder="Paste or type changed text here…" spellcheck="false" aria-label="Changed text"></textarea>
+                <textarea id="text-b" placeholder="Paste or type changed text here…" spellcheck="false" aria-label="Changed text" oninput="updateCount('b'); debouncedCompare();"></textarea>
             </section>
         </div>
 
@@ -363,7 +366,5 @@
             </div>
         </div>
     </div>
-    
-    <script src="script.js"></script>
 </body>
 </html>
