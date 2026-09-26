@@ -1,30 +1,32 @@
-/* State Variables */
+/* ============================================================
+   Raia Delta v1.2.4 — Smart Text Diff Checker
+   ============================================================ */
+
+/* ---------------- State ---------------- */
 var diffMode = 'line';
 var viewMode = 'split';
 var debounceTimer = null;
 var lastDiffResult = [];
 var toastTimer = null;
 
-/* DOM Content Loaded Initializer */
-document.addEventListener('DOMContentLoaded', function() {
+/* ---------------- Boot ---------------- */
+document.addEventListener('DOMContentLoaded', function () {
     initCookieBanner();
     initHeaderScroll();
     initHamburger();
     updateCount('a');
     updateCount('b');
 
-    console.log('🚀 Raia Delta v1.2.3 — Smart Text Diff Checker');
-    console.log('📦 Built with ❤️ by Haiere & Hajir Studio');
+    console.log('%c🚀 Raia Delta v1.2.4', 'color:#3b82f6;font-weight:bold;font-size:14px');
+    console.log('%c📦 Built with ❤️ by Haiere & Hajir Studio', 'color:#94a3b8');
 });
 
-/* Cookie Consent */
+/* ---------------- Cookie Consent ---------------- */
 function initCookieBanner() {
     var banner = document.getElementById('cookie-banner');
     var consent = localStorage.getItem('cookie-consent');
     if (!consent && banner) {
-        setTimeout(function() {
-            banner.classList.remove('hidden');
-        }, 800);
+        setTimeout(function () { banner.classList.remove('hidden'); }, 800);
     }
 }
 
@@ -40,61 +42,62 @@ function declineCookies() {
     showToast('Cookies declined');
 }
 
-/* Header Scroll */
+/* ---------------- Header Scroll ---------------- */
 function initHeaderScroll() {
     var header = document.getElementById('mainHeader');
-    var didScroll = false;
     if (!header) return;
+    var ticking = false;
 
-    window.addEventListener('scroll', function() {
-        if (!didScroll) {
-            window.requestAnimationFrame(function() {
-                if (window.scrollY > 20) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-                didScroll = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                header.classList.toggle('scrolled', window.scrollY > 20);
+                ticking = false;
             });
-            didScroll = true;
+            ticking = true;
         }
     }, { passive: true });
 }
 
-/* Mobile Hamburger Menu */
+/* ---------------- Hamburger Menu ---------------- */
 function initHamburger() {
     var btn = document.getElementById('hamburgerBtn');
     var menu = document.getElementById('mobileMenu');
     if (!btn || !menu) return;
 
-    btn.addEventListener('click', function() {
+    function closeMenu() {
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+    }
+
+    btn.addEventListener('click', function () {
         var isOpen = menu.classList.toggle('open');
-        btn.classList.toggle('open');
-        btn.setAttribute('aria-expanded', isOpen);
-        if (isOpen) {
-            menu.focus();
-        }
+        btn.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', String(isOpen));
     });
 
-    document.addEventListener('keydown', function(e) {
+    menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && menu.classList.contains('open')) {
-            menu.classList.remove('open');
-            btn.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
+            closeMenu();
             btn.focus();
         }
     });
 
-    document.addEventListener('click', function(e) {
-        if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
-            menu.classList.remove('open');
-            btn.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
+    document.addEventListener('click', function (e) {
+        if (menu.classList.contains('open') &&
+            !menu.contains(e.target) &&
+            !btn.contains(e.target)) {
+            closeMenu();
         }
     });
 }
 
-/* UI Helper Actions */
+/* ---------------- UI Helpers ---------------- */
 function focusInputA() {
     var el = document.getElementById('text-a');
     if (el) el.focus();
@@ -105,26 +108,30 @@ function focusAndCompare() {
     runCompare();
 }
 
-/* Toolbar Mode & View Switchers */
+/* ---------------- Mode & View Switchers ---------------- */
 function setMode(m) {
     diffMode = m;
-    document.getElementById('mode-line').classList.toggle('active', m === 'line');
-    document.getElementById('mode-line').setAttribute('aria-pressed', m === 'line');
-    document.getElementById('mode-word').classList.toggle('active', m === 'word');
-    document.getElementById('mode-word').setAttribute('aria-pressed', m === 'word');
+    var lineBtn = document.getElementById('mode-line');
+    var wordBtn = document.getElementById('mode-word');
+    lineBtn.classList.toggle('active', m === 'line');
+    lineBtn.setAttribute('aria-pressed', String(m === 'line'));
+    wordBtn.classList.toggle('active', m === 'word');
+    wordBtn.setAttribute('aria-pressed', String(m === 'word'));
     runCompare();
 }
 
 function setView(v) {
     viewMode = v;
-    document.getElementById('view-split').classList.toggle('active', v === 'split');
-    document.getElementById('view-split').setAttribute('aria-pressed', v === 'split');
-    document.getElementById('view-unified').classList.toggle('active', v === 'unified');
-    document.getElementById('view-unified').setAttribute('aria-pressed', v === 'unified');
+    var splitBtn = document.getElementById('view-split');
+    var unifiedBtn = document.getElementById('view-unified');
+    splitBtn.classList.toggle('active', v === 'split');
+    splitBtn.setAttribute('aria-pressed', String(v === 'split'));
+    unifiedBtn.classList.toggle('active', v === 'unified');
+    unifiedBtn.setAttribute('aria-pressed', String(v === 'unified'));
     runCompare();
 }
 
-/* Clear & Swap Operations */
+/* ---------------- Clear & Swap ---------------- */
 function clearBoth() {
     document.getElementById('text-a').value = '';
     document.getElementById('text-b').value = '';
@@ -152,25 +159,23 @@ function swapTexts() {
     showToast('Swapped texts');
 }
 
-/* File Upload Reader */
+/* ---------------- File Upload ---------------- */
 function loadFile(input, side) {
     var file = input.files[0];
     if (!file) return;
     var reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         document.getElementById('text-' + side).value = e.target.result;
         updateCount(side);
         debouncedCompare();
         showToast('Loaded: ' + file.name);
     };
-    reader.onerror = function() { 
-        showToast('Failed to read file.'); 
-    };
+    reader.onerror = function () { showToast('Failed to read file.'); };
     reader.readAsText(file);
     input.value = '';
 }
 
-/* Character Counter */
+/* ---------------- Character Counter ---------------- */
 function updateCount(side) {
     var ta = document.getElementById('text-' + side);
     var el = document.getElementById('count-' + side);
@@ -179,13 +184,13 @@ function updateCount(side) {
     }
 }
 
-/* Debounced Compare Function */
+/* ---------------- Debounced Compare ---------------- */
 function debouncedCompare() {
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(runCompare, 350);
+    debounceTimer = setTimeout(runCompare, 300);
 }
 
-/* Main Comparison Logic */
+/* ---------------- Main Comparison ---------------- */
 function runCompare() {
     if (typeof Diff === 'undefined') {
         showError('jsDiff library failed to load. Check your internet connection.');
@@ -206,14 +211,8 @@ function runCompare() {
     var a = textA;
     var b = textB;
 
-    if (ignoreCase) { 
-        a = a.toLowerCase();
-        b = b.toLowerCase(); 
-    }
-    if (ignoreWS) { 
-        a = normalizeWhitespace(a);
-        b = normalizeWhitespace(b); 
-    }
+    if (ignoreCase) { a = a.toLowerCase(); b = b.toLowerCase(); }
+    if (ignoreWS) { a = normalizeWhitespace(a); b = normalizeWhitespace(b); }
 
     var parts;
     try {
@@ -237,10 +236,10 @@ function runCompare() {
     updateStats(parts);
 }
 
-/* Utility Helpers */
+/* ---------------- Utilities ---------------- */
 function normalizeWhitespace(text) {
-    return text.split('\n').map(function(line) { 
-        return line.trim().replace(/\s+/g, ' '); 
+    return text.split('\n').map(function (line) {
+        return line.trim().replace(/\s+/g, ' ');
     }).join('\n');
 }
 
@@ -255,7 +254,7 @@ function resetOutput() {
         '<line x1="16" y1="17" x2="8" y2="17"/>' +
         '<polyline points="10 9 9 9 8 9"/>' +
         '</svg>' +
-        '<p>Enter text in both panes and press <strong>Compare</strong><br />or start typing — live preview is enabled.</p>' +
+        '<p>Enter text in both panes and press <strong>Compare</strong>.<br />Live comparison is enabled while you type.</p>' +
         '</div>';
     document.getElementById('diff-stats').style.display = 'none';
     document.getElementById('stat-del-val').textContent = '0 removed';
@@ -265,16 +264,30 @@ function resetOutput() {
 
 function updateStats(parts) {
     var removed = 0, added = 0, equal = 0;
-    parts.forEach(function(p) {
-        var lines = p.value.split('\n').filter(function(l) { return l !== '' || p.value.endsWith('\n'); }).length;
-        if (p.removed) removed += lines;
-        else if (p.added) added += lines;
-        else equal += lines;
+
+    parts.forEach(function (p) {
+        var count;
+        if (diffMode === 'word') {
+            // Count words for word mode
+            count = p.value.trim() ? p.value.trim().split(/\s+/).length : 0;
+        } else {
+            // Count lines for line mode
+            var lines = p.value.split('\n');
+            if (lines[lines.length - 1] === '') lines.pop();
+            count = lines.length;
+        }
+
+        if (p.removed) removed += count;
+        else if (p.added) added += count;
+        else equal += count;
     });
+
     document.getElementById('ds-removed').textContent = '— ' + removed;
     document.getElementById('ds-added').textContent = '+ ' + added;
     document.getElementById('ds-equal').textContent = '= ' + equal;
     document.getElementById('diff-stats').style.display = 'flex';
+
+    var label = diffMode === 'word' ? '' : '';
     document.getElementById('stat-del-val').textContent = removed + ' removed';
     document.getElementById('stat-add-val').textContent = added + ' added';
 }
@@ -285,7 +298,11 @@ function showError(msg) {
 }
 
 function esc(str) {
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
 }
 
 function splitLines(str) {
@@ -294,12 +311,13 @@ function splitLines(str) {
     return lines;
 }
 
-/* Render Unified View */
+/* ---------------- Unified View ---------------- */
 function renderUnified(parts) {
     var out = document.getElementById('diff-output');
+
     if (diffMode === 'word') {
-        var html = '<div style="padding:14px 18px;font-family:var(--font-mono);font-size:var(--text-sm);line-height:var(--leading-loose);color:var(--slate-bright);">';
-        parts.forEach(function(p) {
+        var html = '<div class="word-diff-wrap">';
+        parts.forEach(function (p) {
             var e = esc(p.value);
             if (p.removed) html += '<span class="word-del">' + e + '</span>';
             else if (p.added) html += '<span class="word-add">' + e + '</span>';
@@ -312,78 +330,84 @@ function renderUnified(parts) {
 
     var html = '<table class="unified-table">';
     var lineOld = 1, lineNew = 1;
-    parts.forEach(function(p) {
+
+    parts.forEach(function (p) {
         var lines = splitLines(p.value);
-        lines.forEach(function(line) {
+        lines.forEach(function (line) {
             if (p.removed) {
                 html += '<tr class="row-del">' +
                     '<td class="gutter"></td>' +
                     '<td class="line-num">' + lineOld++ + '</td>' +
-                    '<td class="line-num" style="color:transparent;">·</td>' +
+                    '<td class="line-num empty">·</td>' +
                     '<td class="sign-col">−</td>' +
                     '<td class="line-content">' + (esc(line) || '&nbsp;') + '</td>' +
                     '</tr>';
             } else if (p.added) {
                 html += '<tr class="row-add">' +
                     '<td class="gutter"></td>' +
-                    '<td class="line-num" style="color:transparent;">·</td>' +
+                    '<td class="line-num empty">·</td>' +
                     '<td class="line-num">' + lineNew++ + '</td>' +
                     '<td class="sign-col">+</td>' +
                     '<td class="line-content">' + (esc(line) || '&nbsp;') + '</td>' +
                     '</tr>';
             } else {
                 html += '<tr class="row-neu">' +
-                    '<td class="gutter" style="background:transparent;"></td>' +
+                    '<td class="gutter"></td>' +
                     '<td class="line-num">' + lineOld++ + '</td>' +
                     '<td class="line-num">' + lineNew++ + '</td>' +
-                    '<td class="sign-col" style="color:transparent;">·</td>' +
+                    '<td class="sign-col">·</td>' +
                     '<td class="line-content">' + (esc(line) || '&nbsp;') + '</td>' +
                     '</tr>';
             }
         });
     });
+
     html += '</table>';
     out.innerHTML = html;
 }
 
-/* Render Split View */
+/* ---------------- Split View ---------------- */
 function renderSplit(parts) {
     var out = document.getElementById('diff-output');
 
     if (diffMode === 'word') {
         var leftHtml = '', rightHtml = '';
-        parts.forEach(function(p) {
+        parts.forEach(function (p) {
             var e = esc(p.value);
             if (p.removed) leftHtml += '<span class="word-del">' + e + '</span>';
             else if (p.added) rightHtml += '<span class="word-add">' + e + '</span>';
-            else { 
+            else {
                 leftHtml += '<span>' + e + '</span>';
-                rightHtml += '<span>' + e + '</span>'; 
+                rightHtml += '<span>' + e + '</span>';
             }
         });
-        var wrap = function(content, side) {
+
+        var wrap = function (content, side) {
             return '<div class="split-col" id="split-' + side + '">' +
-                '<div class="split-col-header ' + (side === 'left' ? 'left' : 'right') + '">' +
-                (side === 'left' ?
-                    '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Original' :
-                    '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Changed') +
+                '<div class="split-col-header ' + side + '">' +
+                (side === 'left'
+                    ? '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Original'
+                    : '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Changed') +
                 '</div>' +
-                '<div style="padding:14px 18px;font-family:var(--font-mono);font-size:var(--text-sm);line-height:var(--leading-loose);color:var(--slate-bright);">' + (content || '&nbsp;') + '</div>' +
+                '<div class="word-diff-wrap">' + (content || '&nbsp;') + '</div>' +
                 '</div>';
         };
+
         out.innerHTML = '<div class="split-wrapper">' + wrap(leftHtml, 'left') + wrap(rightHtml, 'right') + '</div>';
         return;
     }
 
     var leftRows = [], rightRows = [];
     var i = 0;
+
     while (i < parts.length) {
         var p = parts[i];
+
         if (!p.removed && !p.added) {
             var lines = splitLines(p.value);
-            lines.forEach(function(l) { 
+            lines.forEach(function (l) {
                 leftRows.push({ type: 'neu', value: l });
-                rightRows.push({ type: 'neu', value: l }); 
+                rightRows.push({ type: 'neu', value: l });
             });
             i++;
         } else if (p.removed && parts[i + 1] && parts[i + 1].added) {
@@ -396,31 +420,31 @@ function renderSplit(parts) {
             }
             i += 2;
         } else if (p.removed) {
-            splitLines(p.value).forEach(function(l) { 
+            splitLines(p.value).forEach(function (l) {
                 leftRows.push({ type: 'del', value: l });
-                rightRows.push({ type: 'empty', value: '' }); 
+                rightRows.push({ type: 'empty', value: '' });
             });
             i++;
         } else if (p.added) {
-            splitLines(p.value).forEach(function(l) { 
+            splitLines(p.value).forEach(function (l) {
                 leftRows.push({ type: 'empty', value: '' });
-                rightRows.push({ type: 'add', value: l }); 
+                rightRows.push({ type: 'add', value: l });
             });
             i++;
-        } else { 
-            i++; 
+        } else {
+            i++;
         }
     }
 
-    var buildTable = function(rows) {
+    var buildTable = function (rows) {
         var lineNum = 1;
         var t = '<table class="split-table">';
-        rows.forEach(function(row) {
+        rows.forEach(function (row) {
             if (row.type === 'empty') {
                 t += '<tr class="empty-row">' +
-                    '<td class="gutter" style="background:rgba(148,163,184,0.04);width:3px;"></td>' +
-                    '<td class="line-num" style="color:transparent;">·</td>' +
-                    '<td class="sign-col" style="color:transparent;">·</td>' +
+                    '<td class="gutter"></td>' +
+                    '<td class="line-num empty">·</td>' +
+                    '<td class="sign-col empty">·</td>' +
                     '<td class="line-content">&nbsp;</td>' +
                     '</tr>';
             } else if (row.type === 'del') {
@@ -439,9 +463,9 @@ function renderSplit(parts) {
                     '</tr>';
             } else {
                 t += '<tr class="row-neu">' +
-                    '<td class="gutter" style="background:transparent;"></td>' +
+                    '<td class="gutter"></td>' +
                     '<td class="line-num">' + lineNum++ + '</td>' +
-                    '<td class="sign-col" style="color:transparent;">·</td>' +
+                    '<td class="sign-col">·</td>' +
                     '<td class="line-content">' + (esc(row.value) || '&nbsp;') + '</td>' +
                     '</tr>';
             }
@@ -470,37 +494,43 @@ function renderSplit(parts) {
 
     out.innerHTML = html;
 
-    /* Sync Scroll */
+    /* Sync scroll between columns (desktop) */
     var left = document.getElementById('split-left');
     var right = document.getElementById('split-right');
     var syncing = false;
-    var syncScroll = function(src, dst) {
+
+    function syncScroll(src, dst) {
         if (syncing) return;
         syncing = true;
         dst.scrollTop = src.scrollTop;
         dst.scrollLeft = src.scrollLeft;
         syncing = false;
-    };
-    if (left && right) {
-        left.addEventListener('scroll', function() { syncScroll(left, right); }, { passive: true });
-        right.addEventListener('scroll', function() { syncScroll(right, left); }, { passive: true });
+    }
+
+    if (left && right && window.innerWidth > 820) {
+        left.addEventListener('scroll', function () { syncScroll(left, right); }, { passive: true });
+        right.addEventListener('scroll', function () { syncScroll(right, left); }, { passive: true });
     }
 }
 
-/* Copy & Export */
+/* ---------------- Copy & Export ---------------- */
+function diffToText() {
+    return lastDiffResult.map(function (p) {
+        var lines = splitLines(p.value);
+        if (p.removed) return lines.map(function (l) { return '- ' + l; }).join('\n');
+        if (p.added) return lines.map(function (l) { return '+ ' + l; }).join('\n');
+        return lines.map(function (l) { return '  ' + l; }).join('\n');
+    }).join('\n');
+}
+
 function copyDiff() {
     if (!lastDiffResult.length) { showToast('Nothing to copy yet.'); return; }
-    var text = lastDiffResult.map(function(p) {
-        var lines = splitLines(p.value);
-        if (p.removed) return lines.map(function(l) { return '- ' + l; }).join('\n');
-        if (p.added) return lines.map(function(l) { return '+ ' + l; }).join('\n');
-        return lines.map(function(l) { return '  ' + l; }).join('\n');
-    }).join('\n');
+    var text = diffToText();
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text)
-            .then(function() { showToast('Diff copied!'); })
-            .catch(function() { fallbackCopy(text); });
+            .then(function () { showToast('Diff copied!'); })
+            .catch(function () { fallbackCopy(text); });
     } else {
         fallbackCopy(text);
     }
@@ -524,13 +554,7 @@ function fallbackCopy(text) {
 
 function downloadDiff() {
     if (!lastDiffResult.length) { showToast('Nothing to export yet.'); return; }
-    var text = lastDiffResult.map(function(p) {
-        var lines = splitLines(p.value);
-        if (p.removed) return lines.map(function(l) { return '- ' + l; }).join('\n');
-        if (p.added) return lines.map(function(l) { return '+ ' + l; }).join('\n');
-        return lines.map(function(l) { return '  ' + l; }).join('\n');
-    }).join('\n');
-
+    var text = diffToText();
     var blob = new Blob([text], { type: 'text/plain' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
@@ -543,7 +567,7 @@ function downloadDiff() {
     showToast('Diff exported!');
 }
 
-/* Toast Notification Helper */
+/* ---------------- Toast ---------------- */
 function showToast(msg, duration) {
     duration = duration || 2500;
     var t = document.getElementById('toast');
@@ -553,13 +577,11 @@ function showToast(msg, duration) {
     msgEl.textContent = msg;
     t.classList.remove('hidden');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function() { 
-        t.classList.add('hidden'); 
-    }, duration);
+    toastTimer = setTimeout(function () { t.classList.add('hidden'); }, duration);
 }
 
-/* Global Keyboard Shortcuts */
-document.addEventListener('keydown', function(e) {
+/* ---------------- Keyboard Shortcuts ---------------- */
+document.addEventListener('keydown', function (e) {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
         e.preventDefault();
         runCompare();

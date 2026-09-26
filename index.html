@@ -4,87 +4,165 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Raia Delta | Smart Text Diff Checker</title>
-    <meta name="description" content="Raia Delta is a lightweight, privacy-first text diff checker with smart line and word comparison, split and unified views, and instant export. 100% client-side." />
-    <meta name="keywords" content="diff checker, text comparison tool, smart diff, code diff, file comparison, privacy-first tools, Raia Delta, Haiere" />
+    <title>Raia Delta v1.2.4 | Free Online Text Diff Checker</title>
+
+    <meta
+        name="description"
+        content="Raia Delta is a free, privacy-first online text diff checker for comparing code, text, and files with line or word-level differences. Fast, simple, and processed entirely in your browser."
+    />
+    <meta
+        name="keywords"
+        content="online diff checker, text diff tool, code comparison tool, compare text online, file comparison tool, line diff, word diff, unified diff, split diff, privacy-first developer tool, Raia Delta"
+    />
     <meta name="author" content="Haiere" />
-    <meta name="robots" content="index, follow" />
+    <meta name="publisher" content="Haiere" />
+    <meta name="application-name" content="Raia Delta" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow" />
+
     <link rel="canonical" href="https://raia-delta.haiere.workers.dev/" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://raia-delta.haiere.workers.dev/" />
-    <meta property="og:title" content="Raia Delta | Smart Text Diff Checker" />
-    <meta property="og:description" content="Compare text and code with smart line and word diffing, split and unified views, and instant local export. 100% client-side." />
+    <meta property="og:site_name" content="Raia Delta" />
+    <meta property="og:title" content="Raia Delta v1.2.4 | Free Online Text Diff Checker" />
+    <meta property="og:description" content="Compare text, code, and files with fast line or word-level differences. Privacy-first, lightweight, and processed locally in your browser." />
     <meta property="og:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Raia Delta text diff checker preview" />
-    <meta property="og:site_name" content="Raia Delta" />
+    <meta property="og:image:alt" content="Raia Delta online text diff checker" />
 
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Raia Delta | Smart Text Diff Checker" />
-    <meta name="twitter:description" content="Compare text and code with smart line and word diffing, split and unified views, and instant local export." />
+    <meta name="twitter:title" content="Raia Delta v1.2.4 | Free Online Text Diff Checker" />
+    <meta name="twitter:description" content="Compare text, code, and files with line or word-level differences in a fast, privacy-first browser tool." />
     <meta name="twitter:image" content="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
-    <meta name="twitter:image:alt" content="Raia Delta text diff checker preview" />
+    <meta name="twitter:image:alt" content="Raia Delta text comparison tool preview" />
 
+    <!-- Icons -->
     <link rel="icon" type="image/webp" href="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" />
 
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Raia Delta",
-      "description": "A lightweight, privacy-first text diff checker with smart line and word comparison, split and unified views, and instant export.",
-      "url": "https://raia-delta.haiere.workers.dev/",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Haiere"
-      }
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Raia Delta",
+        "alternateName": "Raia Delta Text Diff Checker",
+        "description": "A free, privacy-first online text diff checker for comparing code, text, and files with line-level and word-level comparison.",
+        "url": "https://raia-delta.haiere.workers.dev/",
+        "image": "https://i.postimg.cc/8PJ0bhb1/H-haiere.webp",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Text Comparison Tool",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+        "softwareVersion": "1.2.4",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+            "Line-level text comparison",
+            "Word-level text comparison",
+            "Split diff view",
+            "Unified diff view",
+            "Case-insensitive comparison",
+            "Whitespace-insensitive comparison",
+            "Local file upload",
+            "Diff export",
+            "Client-side processing"
+        ],
+        "author": { "@type": "Organization", "name": "Haiere", "url": "https://raia-delta.haiere.workers.dev/" },
+        "creator": { "@type": "Organization", "name": "Haiere" }
     }
     </script>
 
-    <!-- Google Fonts Preconnect -->
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is Raia Delta?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Raia Delta is a free online text and code diff checker that compares two versions of text using line-level or word-level differences." }
+            },
+            {
+                "@type": "Question",
+                "name": "Is my text uploaded to a server?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Raia Delta is designed to process comparisons locally in your browser. Your text is not intentionally uploaded for comparison." }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I compare code files?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. Raia Delta supports common text and code formats including TXT, Markdown, JSON, CSV, JavaScript, TypeScript, HTML, CSS, and Python files." }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Plus+Jakarta+Sans:wght@200..800&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Plus+Jakarta+Sans:wght@200..800&family=JetBrains+Mono:wght@100..800&display=swap"
+        rel="stylesheet"
+    />
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
 
-    <!-- External CSS -->
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css" />
 
-    <!-- Diff Library & Script -->
+    <!-- Diff Library and Application Script -->
     <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 
 <body>
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="header" id="mainHeader" role="banner">
         <div class="header-left">
-            <img class="header-logo" src="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" alt="Haiere Logo" loading="lazy" decoding="async" width="38" height="38" onerror="this.style.display='none'" />
-            <a href="/" class="header-brand" aria-label="Raia Delta Home">
+            <img
+                class="header-logo"
+                src="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp"
+                alt="Haiere logo"
+                width="38"
+                height="38"
+                decoding="async"
+                onerror="this.style.display='none'"
+            />
+            <a href="/" class="header-brand" aria-label="Raia Delta home">
                 Raia<span>Delta</span>
             </a>
-            <span class="header-badge">v1.2.3</span>
+            <span class="header-badge">v1.2.4</span>
         </div>
 
         <nav class="header-nav" aria-label="Main navigation">
-            <a href="#" class="active" aria-current="page">Compare</a>
+            <a href="#compare" class="active" aria-current="page">Compare</a>
             <a href="https://raia-footer.netlify.app/#privacy" rel="noopener noreferrer">Privacy</a>
             <a href="#text-a" class="nav-cta">Get Started</a>
+            <a
+                href="https://buymeacoffee.com/hajirstudio"
+                class="nav-cta"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Support Raia Delta on Buy Me a Coffee"
+            >
+                <i class="fas fa-mug-hot" aria-hidden="true"></i>
+                Support
+            </a>
         </nav>
 
         <div class="header-right">
@@ -99,7 +177,14 @@
                 </div>
             </div>
 
-            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu" type="button">
+            <button
+                class="hamburger"
+                id="hamburgerBtn"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+                aria-controls="mobileMenu"
+                type="button"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
@@ -107,27 +192,36 @@
         </div>
     </header>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Navigation -->
     <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-        <a href="#" class="active" aria-current="page">Compare</a>
+        <a href="#compare" class="active" aria-current="page">Compare</a>
         <a href="https://raia-footer.netlify.app/#privacy" rel="noopener noreferrer">Privacy</a>
         <a href="#text-a" class="nav-cta">Get Started</a>
+        <a
+            href="https://buymeacoffee.com/hajirstudio"
+            class="nav-cta"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Support Raia Delta on Buy Me a Coffee"
+        >
+            <i class="fas fa-mug-hot" aria-hidden="true"></i>
+            Support the Project
+        </a>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-badge">
-            <span class="dot-pulse" aria-hidden="true"></span>
-            100% client-side · No tracking
-        </div>
+    <!-- Hero -->
+    <section class="hero" id="compare" aria-labelledby="hero-title">
 
         <h1 id="hero-title">
-            Smart Text Diff <br /><span class="highlight">Made Clear</span>
+            Compare Text
+            <br />
+            <span class="highlight">With Clarity</span>
         </h1>
 
         <p>
-            Compare text and code seamlessly with line-by-line or word-level diffing.
-            Switch between split and unified views all processed locally in your browser.
+            Find changes in text, code, and files with accurate line-level
+            or word-level comparison. Fast, simple, and processed locally
+            in your browser.
         </p>
 
         <div class="hero-actions">
@@ -137,26 +231,37 @@
                 </svg>
                 Compare Now
             </button>
-
             <button class="btn btn-ghost" type="button" onclick="focusInputA()">
-                <i class="fas fa-arrow-right" aria-hidden="true" style="font-size:12px;"></i>
+                <i class="fas fa-keyboard" aria-hidden="true"></i>
                 Start Typing
             </button>
         </div>
+
+        <div class="hero-note">
+            No account required · No text storage · Works on desktop and mobile
+        </div>
     </section>
 
-    <!-- APP WRAPPER -->
-    <main class="app-wrapper" role="main">
+    <!-- Main Application -->
+    <main class="app-wrapper" role="main" aria-label="Raia Delta text comparison application">
         <!-- Toolbar -->
         <div class="toolbar" role="toolbar" aria-labelledby="toolbarLabel">
-            <span id="toolbarLabel" class="sr-only">Diff controls</span>
+            <span id="toolbarLabel" class="sr-only">Text comparison controls</span>
 
-            <div class="toolbar-section">
+            <div class="toolbar-section toolbar-actions">
                 <button class="btn btn-primary btn-sm" id="btn-compare" type="button" onclick="runCompare()">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                     </svg>
                     Compare
+                </button>
+
+                <button class="btn btn-ghost btn-sm" type="button" onclick="swapTexts()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M7 16V4m0 0L3 8m4-4l4 4" />
+                        <path d="M17 8v12m0 0l4-4m-4 4l-4-4" />
+                    </svg>
+                    Swap
                 </button>
 
                 <button class="btn btn-ghost btn-sm" type="button" onclick="clearBoth()">
@@ -168,21 +273,13 @@
                     </svg>
                     Clear
                 </button>
-
-                <button class="btn btn-ghost btn-sm" type="button" onclick="swapTexts()">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <path d="M7 16V4m0 0L3 8m4-4l4 4" />
-                        <path d="M17 8v12m0 0l4-4m-4 4l-4-4" />
-                    </svg>
-                    Swap
-                </button>
             </div>
 
             <div class="toolbar-divider" aria-hidden="true"></div>
 
             <div class="toolbar-section">
                 <span class="toolbar-label">Mode</span>
-                <div class="toggle-group" role="group" aria-label="Diff mode">
+                <div class="toggle-group" role="group" aria-label="Diff comparison mode">
                     <button class="toggle-option active" id="mode-line" type="button" onclick="setMode('line')" aria-pressed="true">Line</button>
                     <button class="toggle-option" id="mode-word" type="button" onclick="setMode('word')" aria-pressed="false">Word</button>
                 </div>
@@ -190,25 +287,25 @@
 
             <div class="toolbar-divider" aria-hidden="true"></div>
 
-            <div class="toolbar-section" style="gap:8px;">
+            <div class="toolbar-section">
+                <span class="toolbar-label">View</span>
+                <div class="toggle-group" role="group" aria-label="Diff result view">
+                    <button class="toggle-option active" id="view-split" type="button" onclick="setView('split')" aria-pressed="true">Split</button>
+                    <button class="toggle-option" id="view-unified" type="button" onclick="setView('unified')" aria-pressed="false">Unified</button>
+                </div>
+            </div>
+
+            <div class="toolbar-divider" aria-hidden="true"></div>
+
+            <div class="toolbar-section toolbar-options">
                 <label class="checkbox-label">
                     <input type="checkbox" id="opt-ignore-case" onchange="debouncedCompare()" />
                     Ignore Case
                 </label>
                 <label class="checkbox-label">
                     <input type="checkbox" id="opt-ignore-ws" onchange="debouncedCompare()" />
-                    Ignore WS
+                    Ignore Whitespace
                 </label>
-            </div>
-
-            <div class="toolbar-divider" aria-hidden="true"></div>
-
-            <div class="toolbar-section">
-                <span class="toolbar-label">View</span>
-                <div class="toggle-group" role="group" aria-label="View mode">
-                    <button class="toggle-option active" id="view-split" type="button" onclick="setView('split')" aria-pressed="true">Split</button>
-                    <button class="toggle-option" id="view-unified" type="button" onclick="setView('unified')" aria-pressed="false">Unified</button>
-                </div>
             </div>
         </div>
 
@@ -218,12 +315,10 @@
                 <div class="pane-header">
                     <span class="pane-label original" id="paneA-title">
                         <span class="badge-dot original" aria-hidden="true"></span>
-                        Original
+                        Original Text
                     </span>
-
                     <div class="pane-actions">
                         <span class="char-count" id="count-a" aria-live="polite">0 chars</span>
-
                         <label class="upload-btn" for="upload-a">
                             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -232,26 +327,44 @@
                             </svg>
                             Upload
                         </label>
-
-                        <input type="file" id="upload-a" accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py" aria-label="Upload original text file" onchange="loadFile(this, 'a')" />
-
-                        <button class="btn btn-sm btn-danger" type="button" onclick="clearPane('a')" aria-label="Clear original text">✕</button>
+                        <input
+                            type="file"
+                            id="upload-a"
+                            accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py"
+                            aria-label="Upload original text file"
+                            onchange="loadFile(this, 'a')"
+                        />
+                        <button
+                            class="icon-btn"
+                            type="button"
+                            onclick="clearPane('a')"
+                            aria-label="Clear original text"
+                            title="Clear"
+                        >
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
-
-                <textarea id="text-a" placeholder="Paste or type original text here…" spellcheck="false" aria-label="Original text" oninput="updateCount('a'); debouncedCompare();"></textarea>
+                <textarea
+                    id="text-a"
+                    placeholder="Paste or type the original text here…"
+                    spellcheck="false"
+                    aria-label="Original text"
+                    oninput="updateCount('a'); debouncedCompare();"
+                ></textarea>
             </section>
 
             <section class="pane" aria-labelledby="paneB-title">
                 <div class="pane-header">
                     <span class="pane-label changed" id="paneB-title">
                         <span class="badge-dot changed" aria-hidden="true"></span>
-                        Changed
+                        Changed Text
                     </span>
-
                     <div class="pane-actions">
                         <span class="char-count" id="count-b" aria-live="polite">0 chars</span>
-
                         <label class="upload-btn" for="upload-b">
                             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -260,14 +373,34 @@
                             </svg>
                             Upload
                         </label>
-
-                        <input type="file" id="upload-b" accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py" aria-label="Upload changed text file" onchange="loadFile(this, 'b')" />
-
-                        <button class="btn btn-sm btn-danger" type="button" onclick="clearPane('b')" aria-label="Clear changed text">✕</button>
+                        <input
+                            type="file"
+                            id="upload-b"
+                            accept=".txt,.md,.json,.csv,.js,.ts,.html,.css,.py"
+                            aria-label="Upload changed text file"
+                            onchange="loadFile(this, 'b')"
+                        />
+                        <button
+                            class="icon-btn"
+                            type="button"
+                            onclick="clearPane('b')"
+                            aria-label="Clear changed text"
+                            title="Clear"
+                        >
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
-
-                <textarea id="text-b" placeholder="Paste or type changed text here…" spellcheck="false" aria-label="Changed text" oninput="updateCount('b'); debouncedCompare();"></textarea>
+                <textarea
+                    id="text-b"
+                    placeholder="Paste or type the changed text here…"
+                    spellcheck="false"
+                    aria-label="Changed text"
+                    oninput="updateCount('b'); debouncedCompare();"
+                ></textarea>
             </section>
         </div>
 
@@ -285,9 +418,9 @@
 
                 <div class="diff-stats" id="diff-stats" style="display:none;" aria-live="polite" aria-atomic="true">
                     <span class="stat-del" id="ds-removed">— 0</span>
-                    <span style="color:var(--slate-dim);" aria-hidden="true">|</span>
+                    <span class="stat-sep" aria-hidden="true">|</span>
                     <span class="stat-add" id="ds-added">+ 0</span>
-                    <span style="color:var(--slate-dim);" aria-hidden="true">|</span>
+                    <span class="stat-sep" aria-hidden="true">|</span>
                     <span class="stat-neu" id="ds-equal">= 0</span>
                 </div>
 
@@ -299,8 +432,7 @@
                         </svg>
                         Copy
                     </button>
-
-                    <button class="btn btn-sm btn-ghost" type="button" onclick="downloadDiff()" aria-label="Download diff">
+                    <button class="btn btn-sm btn-ghost" type="button" onclick="downloadDiff()" aria-label="Download diff result">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                             <polyline points="7 10 12 15 17 10" />
@@ -320,32 +452,105 @@
                         <line x1="16" y1="17" x2="8" y2="17" />
                         <polyline points="10 9 9 9 8 9" />
                     </svg>
-                    <p>Enter text in both panes and press <strong>Compare</strong><br />or start typing, live preview is enabled.</p>
+                    <p>
+                        Enter text in both panes and press <strong>Compare</strong>.
+                        <br />
+                        Live comparison is enabled while you type.
+                    </p>
                 </div>
+            </div>
+        </section>
+
+        <!-- Info Section -->
+        <section class="info-section" aria-labelledby="about-tool-title">
+            <h2 id="about-tool-title">A simple text comparison tool</h2>
+            <p>
+                Raia Delta helps developers, writers, students, and researchers
+                quickly identify changes between two versions of text or code.
+                Use line mode for files and documents, or word mode for detailed
+                sentence-level changes.
+            </p>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <i class="fas fa-lock" aria-hidden="true"></i>
+                    <h3>Privacy-first</h3>
+                    <p>Text comparison is designed to run locally in your browser.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fas fa-code" aria-hidden="true"></i>
+                    <h3>Developer-friendly</h3>
+                    <p>Compare HTML, CSS, JavaScript, JSON, Markdown, and more.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                    <h3>Fast and lightweight</h3>
+                    <p>No account, installation, or complicated configuration is required.</p>
+                </article>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="footer" role="contentinfo">
-        <img src="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp" alt="Haiere Logo" class="footer-logo" loading="lazy" decoding="async" width="60" height="60" />
+        <img
+            src="https://i.postimg.cc/8PJ0bhb1/H-haiere.webp"
+            alt="Haiere logo"
+            class="footer-logo"
+            loading="lazy"
+            decoding="async"
+            width="60"
+            height="60"
+        />
+
         <div class="footer-name">Raia<span>Delta</span></div>
-        <div class="footer-tagline">Where change becomes clear</div>
+        <div class="footer-tagline">Where every change becomes clear</div>
 
         <div class="footer-divider" aria-hidden="true"></div>
 
         <div class="footer-links">
             <a href="https://raia-footer.netlify.app/#privacy" class="footer-link" rel="noopener noreferrer">
-                <i class="fas fa-shield-alt" aria-hidden="true"></i> Privacy
+                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                Privacy
+            </a>
+            <a href="https://raia-footer.netlify.app/#cookie" class="footer-link" rel="noopener noreferrer">
+                <i class="fas fa-cookie-bite" aria-hidden="true"></i>
+                Cookie Policy
+            </a>
+            <a
+                href="https://buymeacoffee.com/hajirstudio"
+                class="footer-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Support Haiere on Buy Me a Coffee"
+            >
+                <i class="fas fa-mug-hot" aria-hidden="true"></i>
+                Support the Project
+            </a>
+        </div>
+
+        <div class="support-card" aria-label="Support Raia Delta">
+            <span>Enjoying Raia Delta?</span>
+            <a
+                href="https://buymeacoffee.com/hajirstudio"
+                class="btn btn-ghost btn-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Buy Haiere a coffee"
+            >
+                <i class="fas fa-mug-hot" aria-hidden="true"></i>
+                Buy Me a Coffee
             </a>
         </div>
 
         <div class="footer-divider" aria-hidden="true"></div>
 
-        <div class="copyright">© 2026 Haiere. All rights reserved. v1.2.3</div>
+        <div class="copyright">
+            © 2026 Haiere. All rights reserved. Raia Delta v1.2.4
+        </div>
     </footer>
 
-    <!-- Toast -->
+    <!-- Toast Notification -->
     <div class="toast hidden" id="toast" role="status" aria-live="polite" aria-atomic="true">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" aria-hidden="true">
             <polyline points="20 6 9 17 4 12" />
@@ -358,7 +563,10 @@
         <div class="cookie-content">
             <div class="cookie-text" id="cookie-title">
                 <i class="fas fa-cookie-bite" aria-hidden="true"></i>
-                <span>We use cookies to enhance your experience. By continuing, you accept our <a href="https://haiere.github.io/raia-footer/#cookie" rel="noopener noreferrer">cookie policy</a>.</span>
+                <span>
+                    We use cookies to improve your experience. By continuing, you accept our
+                    <a href="https://raia-footer.netlify.app/#cookie" rel="noopener noreferrer">cookie policy</a>.
+                </span>
             </div>
             <div class="cookie-actions">
                 <button class="btn-cookie btn-cookie-decline" type="button" onclick="declineCookies()">Decline</button>
